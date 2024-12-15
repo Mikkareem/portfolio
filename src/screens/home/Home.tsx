@@ -1,6 +1,7 @@
 import Profile from "./components/Profile.tsx";
 import Skills from "./components/Skills.tsx";
 import Experience from "./components/Experience.tsx";
+import ProjectList from "./components/ProjectList.tsx";
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Profile />
             <Skills />
             <Experience />
+            <ProjectList />
         </div>
     );
 };

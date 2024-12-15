@@ -55,17 +55,22 @@ const ExperienceComponent = (
     { experience }: { experience: ExperienceModel }
 ) => {
     return (
-        <div className='flex flex-col'>
-            <h4 className='text-xl font-bold'>{experience.designation}</h4>
-            <h4 className='text-xl italic'>{experience.company} - {experience.location} - {experience.totalMonths}</h4>
+        <div className='flex flex-col gap-4'>
+            <div>
+                <h4 className='text-xl font-bold'>{experience.designation}</h4>
+                <h4 className='text-xl italic'>{experience.company} - {experience.location} - {experience.totalMonths}</h4>
+            </div>
             <p>{experience.description}</p>
-            <ul>
-                {experience.contributions.map((contribution) => (
-                    <li key={contribution}>
-                        <p>{contribution}</p>
-                    </li>
-                ))}
-            </ul>
+            <div>
+                <p className='font-bold'>Key Contributions: </p>
+                <ul className='list-disc ml-8'>
+                    {experience.contributions.map((contribution) => (
+                        <li key={contribution}>
+                            <p>{contribution}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
             <p><strong>Technologies: </strong>{experience.technologies}</p>
         </div>
     )
