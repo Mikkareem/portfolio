@@ -42,7 +42,7 @@ const experiences: ExperienceModel[] = [
 
 const Experience = () => {
     return (
-        <div className='flex flex-col gap-8 min-h-screen'>
+        <div className='flex flex-col gap-6 min-h-screen'>
             <h3 className='text-2xl font-bold'>Work Experience</h3>
             {experiences.map(experience => (
                 <ExperienceComponent key={experience.company} experience={experience} />

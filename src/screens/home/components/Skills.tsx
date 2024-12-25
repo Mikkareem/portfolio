@@ -9,7 +9,7 @@ const LanguageSkills = ['Java', 'Kotlin', 'C/Cpp', 'JS/TS', 'Python'];
 
 const Skills = () => {
     return (
-        <div className='flex flex-col justify-center h-screen gap-12'>
+        <div className='flex flex-col justify-center min-h-screen gap-12'>
             <h3 className='text-2xl font-bold'>Skills</h3>
             <div className='flex flex-wrap gap-4'>
                 {
