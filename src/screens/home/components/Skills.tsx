@@ -1,47 +1,31 @@
-
-const AndroidSkills = ['Kotlin/Java', 'Android Development', 'Jetpack Compose', 'Kotlin Multiplatform', 'Compose Multiplatform', 'iOS Development', 'Compose Desktop', 'Room DB', 'Retrofit', 'Firebase', 'Jetpack Navigation', 'WorkManager', 'Coil', 'Dagger/Hilt', 'Koin', 'Unit Testing', 'Compose UI Testing', 'OpenGL ES', 'Shaders', 'Game Development'];
-
-const WebAndBackEndSkills = ['Web development', 'React JS/TS', 'Next JS/TS', 'NodeJS', 'ExpressJS', 'Socket IO', 'Tailwind CSS', 'Websockets', 'Frontend Development', 'Backend Development', 'Spring Boot', 'Spring Security', 'Spring Data JPA', 'Spring Boot w/Kotlin', 'Spring Boot Reactive Web w/Kotlin', 'REST Api', 'KTOR Server', 'KTOR Client'];
-
-const DatabaseSkills = ['SQL', 'PL/SQL', 'Mysql', 'Oracle', 'PostgreSQL', 'MongoDB'];
-
-const LanguageSkills = ['Java', 'Kotlin', 'C/Cpp', 'JS/TS', 'Python'];
+import SkillsSketch from "./sketches/SkillsSketch.tsx";
+import {useEffect, useState, useRef} from "react";
 
 const Skills = () => {
+
+    const skillContainer = useRef<HTMLDivElement>(null);
+
+    const [availableWidth, setAvailableWidth] = useState(0)
+
+    useEffect(() => {
+        function handleResize() {
+            setAvailableWidth(skillContainer.current.getBoundingClientRect().width);
+        }
+
+        if(skillContainer.current) {
+            handleResize();
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+
+    }, [skillContainer.current])
+
     return (
-        <div className='flex flex-col justify-center h-screen gap-12'>
+        <div className='flex flex-col justify-center gap-12' ref={skillContainer}>
             <h3 className='text-2xl font-bold'>Skills</h3>
-            <div className='flex flex-wrap gap-4'>
-                {
-                    AndroidSkills.map(skill => (
-                        <SkillPill name={skill} key={skill}/>
-                    ))
-                }
-            </div>
 
-            <div className='flex flex-wrap gap-4'>
-                {
-                    WebAndBackEndSkills.map(skill => (
-                        <SkillPill name={skill} key={skill}/>
-                    ))
-                }
-            </div>
-
-            <div className='flex flex-wrap gap-4'>
-                {
-                    DatabaseSkills.map(skill => (
-                        <SkillPill name={skill} key={skill}/>
-                    ))
-                }
-            </div>
-
-            <div className='flex flex-wrap gap-4'>
-                {
-                    LanguageSkills.map(skill => (
-                        <SkillPill name={skill} key={skill}/>
-                    ))
-                }
-            </div>
+            <SkillsSketch width={availableWidth} height={500}/>
         </div>
     );
 };

@@ -74,8 +74,8 @@ const ProjectList = () => {
 
     return (
         <div className='grid grid-cols-4 gap-4'>
-            {projects.map((project) => (
-                <ProjectListItem key={project.name} project={project} />
+            {projects.map((project, index) => (
+                <ProjectListItem key={index} project={project} />
             ))}
         </div>
     );
