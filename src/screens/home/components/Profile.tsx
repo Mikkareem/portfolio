@@ -27,7 +27,7 @@ const Profile = () => {
 
     return (
         <div className='relative'>
-            <div className="flex gap-12 items-center aspect-square" ref={profileRef}>
+            <div className="flex gap-12 items-center aspect-square md:aspect-auto md:h-screen" ref={profileRef}>
                 <div className='flex flex-col gap-4 w-full'>
                     <h1 className='lg:text-9xl text-center font-extrabold text-3xl'>Mohamed Irsath Kareem</h1>
                     <p className='font-extrabold italic text-center'>Full stack (Web & Mobile) Software Engineer</p>

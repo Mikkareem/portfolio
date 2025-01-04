@@ -24,6 +24,7 @@ const sketch: Sketch<FractalSketchProps> = (p5) => {
 
     p5.setup = () => {
         p5.createCanvas(w, h, p5.WEBGL)
+        p5.frameRate(30)
         fractalShader = p5.createShader(FRACTALS_VERTEX_SHADER, FRACTALS_FRAGMENT_SHADER)
     }
 
