@@ -30,8 +30,8 @@ class Capsule {
     public padding: number;
 
 
-    private xFactor = 60; //random(3, 15);
-    private yFactor = 60; //random(3, 15);
+    private xFactor = 30; //random(3, 15);
+    private yFactor = 30; //random(3, 15);
     public w: number;
     public h: number;
 
@@ -52,7 +52,7 @@ class Capsule {
     }
 
     private update() {
-        this.velocity = this.sketch._canvas.createVector(this.sketch._canvas.sin(this.sketch._canvas.frameCount / this.xFactor) * this.sketch._canvas.random(0.08, 0.3), this.sketch._canvas.cos(this.sketch._canvas.frameCount / this.yFactor) * this.sketch._canvas.random(0.08, 0.3));
+        this.velocity = this.sketch._canvas.createVector(this.sketch._canvas.sin(this.sketch._canvas.frameCount / this.xFactor) * this.sketch._canvas.random(0.2, 0.53), this.sketch._canvas.cos(this.sketch._canvas.frameCount / this.yFactor) * this.sketch._canvas.random(0.2, 0.53));
         this.position.add(this.velocity);
     }
 
@@ -173,7 +173,8 @@ function manualSetup(p: SkillSketch) {
 
 function setup(p: SkillSketch) {
     p._canvas.createCanvas(p.w, p.h);
-    p.ts = Math.min(p._canvas.width/77.5, 16);
+    p._canvas.frameRate(30)
+    p.ts = Math.min(p._canvas.width/77.5, 32);
 }
 
 function draw(p: SkillSketch) {
@@ -200,7 +201,7 @@ const skillsSketch : () => SkillSketch = () => ({
 
     eachHeightNeeded: 20,
     verticalPadding: 2*5,
-    startNeededForTree: 250,
+    startNeededForTree: 100,
     w: 500,
     h: 500,
     _canvas: {} as P5CanvasInstance<SkillsSketchProps>,
@@ -211,7 +212,7 @@ const skillsSketch : () => SkillSketch = () => ({
             if (props.width != p.width) {
                 this.w = props.width;
                 p.resizeCanvas(this.w, this.h);
-                this.ts = Math.min(p.width / 77.5, 16);
+                this.ts = Math.min(p.width / 77.5, 32);
             }
             this.skills = props.skills;
             this.h = (this.skills.length * (this.eachHeightNeeded + this.verticalPadding)) + this.startNeededForTree;
