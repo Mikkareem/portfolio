@@ -9,7 +9,7 @@ const Skills = () => {
 
     useEffect(() => {
         function handleResize() {
-            setAvailableWidth(skillContainer.current.getBoundingClientRect().width);
+            setAvailableWidth(skillContainer.current!.getBoundingClientRect().width);
         }
 
         if(skillContainer.current) {
@@ -29,15 +29,5 @@ const Skills = () => {
         </div>
     );
 };
-
-const SkillPill = (
-    {name}: { name: String }
-) => {
-    return (
-        <div className='rounded-3xl bg-pink-700 px-4 py-1 font-bold'>
-            <p>{name}</p>
-        </div>
-    )
-}
 
 export default Skills;

@@ -8,10 +8,11 @@ const Profile = () => {
 
     useEffect(() => {
         function handleResize() {
+
             setSize(
                 {
-                    width: profileRef.current.getBoundingClientRect().width,
-                    height: profileRef.current.getBoundingClientRect().height
+                    width: profileRef.current!.getBoundingClientRect().width,
+                    height: profileRef.current!.getBoundingClientRect().height
                 }
             )
         }
