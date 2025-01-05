@@ -1,4 +1,4 @@
-import * as P5 from 'p5';
+import P5 from 'p5';
 import {SketchProps, ReactP5Wrapper, Sketch, P5CanvasInstance} from "@p5-wrapper/react";
 import { AndroidSkills, DatabaseSkills, WebAndBackEndSkills, LanguageSkills } from '../../../../data/Skills.ts'
 
@@ -141,9 +141,10 @@ function manualSetup(p: SkillSketch) {
     let index = 0;
     p.capsules = []
 
+    p._canvas.textSize(p.ts)
+    p.eachHeightNeeded = p._canvas.textAscent() + 20
+    p.h = (p.skills.length * (p.eachHeightNeeded + p.verticalPadding)) + p.startNeededForTree;
     p._canvas.resizeCanvas(p._canvas.width, p.h);
-
-    // let temp = p.canvas.shuffle((p.skills as string[]).map((_, i) => i))
 
     while (index < p.skills.length) {
         const totalHeightEach = p.eachHeightNeeded + p.verticalPadding
@@ -174,7 +175,7 @@ function manualSetup(p: SkillSketch) {
 function setup(p: SkillSketch) {
     p._canvas.createCanvas(p.w, p.h);
     p._canvas.frameRate(30)
-    p.ts = Math.min(p._canvas.width/77.5, 32);
+    // p.ts = p._canvas.map(p._canvas.width, MIN_SCREEN_SIZE, MAX_SCREEN_SIZE, MAX_TEXT_SIZE, MIN_TEXT_SIZE)
 }
 
 function draw(p: SkillSketch) {
@@ -190,6 +191,9 @@ function draw(p: SkillSketch) {
     for (let capsule of p.capsules) {
         capsule.show();
     }
+
+    // p._canvas.fill(255);
+    // p._canvas.text(p.ts, 100, 100);
 }
 
 
@@ -201,7 +205,7 @@ const skillsSketch : () => SkillSketch = () => ({
 
     eachHeightNeeded: 20,
     verticalPadding: 2*5,
-    startNeededForTree: 100,
+    startNeededForTree: 150,
     w: 500,
     h: 500,
     _canvas: {} as P5CanvasInstance<SkillsSketchProps>,
@@ -210,11 +214,10 @@ const skillsSketch : () => SkillSketch = () => ({
         p.updateWithProps = (props) => {
             if (props.width != p.width) {
                 this.w = props.width;
-                p.resizeCanvas(this.w, this.h);
-                this.ts = Math.min(p.width / 77.5, 32);
+                p.resizeCanvas(this.w, this.h)
+                // this.ts = p.map(props.width, MIN_SCREEN_SIZE, MAX_SCREEN_SIZE, MAX_TEXT_SIZE, MIN_TEXT_SIZE)
             }
             this.skills = props.skills;
-            this.h = (this.skills.length * (this.eachHeightNeeded + this.verticalPadding)) + this.startNeededForTree;
             this.invalidated = true;
         }
 
