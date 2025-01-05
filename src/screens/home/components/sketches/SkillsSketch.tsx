@@ -206,7 +206,6 @@ const skillsSketch : () => SkillSketch = () => ({
     h: 500,
     _canvas: {} as P5CanvasInstance<SkillsSketchProps>,
     sketch(p){
-        console.log(p);
         this._canvas = p;
         p.updateWithProps = (props) => {
             if (props.width != p.width) {
