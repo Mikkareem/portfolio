@@ -42,6 +42,7 @@ vec3 pallete(float t) {
 
 void main() {
   vec2 uv = vTexCoord * 2.0 - 1.0;
+  uv.x *= (uv.x / uv.y);
 
   vec2 uv0 = uv;
   vec3 finalColor = vec3(0.0);
