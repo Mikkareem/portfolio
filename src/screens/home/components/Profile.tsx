@@ -1,4 +1,3 @@
-// import FractalSketch from "./sketches/FractalSketch.tsx";
 import useMediaQuery from "../../../hooks/useMediaQuery.ts";
 import SmileySketch from "./sketches/SmileySketch.tsx";
 
@@ -7,7 +6,7 @@ const Profile = () => {
     const isSmall = useMediaQuery('(max-width: 768px)');
     const isMedium = useMediaQuery('(max-width: 1024px)');
 
-    const fractalSize: number = isSmall ? 250 : isMedium ? 250 : 400;
+    const rectSize: number = isSmall ? 250 : isMedium ? 250 : 400;
 
     return (
         <div className='flex flex-col md:flex-row gap-8 items-center justify-center md:h-screen mb-32'>
@@ -20,8 +19,8 @@ const Profile = () => {
                 </p>
             </div>
             <div className='rotate-180'>
-                {/*<FractalSketch width={fractalSize} height={fractalSize} />*/}
-                <SmileySketch width={fractalSize} height={fractalSize} />
+                {/*<FractalSketch width={rectSize} height={rectSize} />*/}
+                <SmileySketch width={rectSize} height={rectSize} />
             </div>
         </div>
     );
