@@ -1,14 +1,14 @@
 
 import { Shader } from 'p5'
 import { ReactP5Wrapper, Sketch, SketchProps} from '@p5-wrapper/react'
-import {FRACTALS_FRAGMENT_SHADER, FRACTALS_VERTEX_SHADER} from "./shaders/Fractals.ts";
+import {SMILEY_FRAGMENT_SHADER, SMILEY_VERTEX_SHADER} from "./shaders/Smiley.ts";
 
-type FractalSketchProps = SketchProps & {
+type SmileySketchProps = SketchProps & {
     width: number;
     height: number;
 }
 
-const sketch: Sketch<FractalSketchProps> = (p5) => {
+const sketch: Sketch<SmileySketchProps> = (p5) => {
     let w = p5.width
     let h = p5.height
 
@@ -25,7 +25,7 @@ const sketch: Sketch<FractalSketchProps> = (p5) => {
     p5.setup = () => {
         p5.createCanvas(w, h, p5.WEBGL)
         p5.frameRate(30)
-        fractalShader = p5.createShader(FRACTALS_VERTEX_SHADER, FRACTALS_FRAGMENT_SHADER)
+        fractalShader = p5.createShader(SMILEY_VERTEX_SHADER, SMILEY_FRAGMENT_SHADER)
     }
 
     p5.draw = () => {
@@ -34,12 +34,13 @@ const sketch: Sketch<FractalSketchProps> = (p5) => {
         fractalShader.setUniform('iTime', (Date.now() - startTime) / 1000.0)
         p5.rectMode(p5.CENTER)
         // p5.plane(p5.width, p5.height);
-        p5.circle(0, 0, p5.width);
+        p5.stroke(0)
+        p5.rect(0, 0, p5.width, p5.height);
     }
 }
 
-const FractalSketch = ({
+const SmileySketch = ({
     width, height
 }: { width: number, height: number }) => <ReactP5Wrapper sketch={sketch} width={width} height={height} />
 
-export default FractalSketch;
+export default SmileySketch;

@@ -1,50 +1,27 @@
-import FractalSketch from "./sketches/FractalSketch.tsx";
-import {useRef, useEffect, useState} from "react";
+// import FractalSketch from "./sketches/FractalSketch.tsx";
+import useMediaQuery from "../../../hooks/useMediaQuery.ts";
+import SmileySketch from "./sketches/SmileySketch.tsx";
 
 const Profile = () => {
-    const profileRef = useRef<HTMLDivElement>(null)
 
-    const [size, setSize] = useState<{width: number, height: number}>({width: 0, height: 0})
+    const isSmall = useMediaQuery('(max-width: 768px)');
+    const isMedium = useMediaQuery('(max-width: 1024px)');
 
-    useEffect(() => {
-        function handleResize() {
-
-            setSize(
-                {
-                    width: profileRef.current!.getBoundingClientRect().width,
-                    height: profileRef.current!.getBoundingClientRect().height
-                }
-            )
-        }
-        if(profileRef.current) {
-            handleResize();
-        }
-
-        window.addEventListener("resize", handleResize);
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, [profileRef.current]);
+    const fractalSize: number = isSmall ? 250 : isMedium ? 250 : 400;
 
     return (
-        <div className='relative'>
-            <div className="flex gap-12 items-center aspect-square md:aspect-auto md:h-screen" ref={profileRef}>
-                <div className='flex flex-col gap-4 w-full'>
-                    <h1 className='lg:text-9xl text-center font-extrabold text-3xl'>Mohamed Irsath Kareem</h1>
-                    <p className='font-extrabold italic text-center'>Full stack (Web & Mobile) Software Engineer</p>
-                    {/*<p className=''>A highly motivated software engineer with 5+ years of Work/Hands-on experience, and*/}
-                    {/*    have many projects in hand. Eager to work on many projects which will horn my technical*/}
-                    {/*    skills</p>*/}
-                    {/*<div>*/}
-                    {/*    <button>CV/Resume</button>*/}
-                    {/*</div>*/}
-                </div>
-                {/*<div>*/}
-                {/*    <img src={import.meta.env.BASE_URL + '/assets/irsath-dp.png'} alt='cover-picture'*/}
-                {/*         className='w-[900px] h-[450px]'/>*/}
-                {/*</div>*/}
+        <div className='flex flex-col md:flex-row gap-8 items-center justify-center md:h-screen mb-32'>
+            <div className="max-w-[80%] md:max-w-[50%]">
+                <p className='font-itim text-[22px]'>
+                    <span className='font-joti text-[64px]'>Hi, </span> I am <br />
+                    <h1 className='text-yellow-500 text-4xl md:text-8xl leading-none'>Mohamed Irsath Kareem</h1>
+                    <br/>
+                    <h1 className='text-pink-500 text-sm md:text-2xl leading-none'>Full Stack (Web &amp; Mobile) App Developer</h1>
+                </p>
             </div>
-            <div className="absolute top-0 left-0 -z-10">
-                <FractalSketch width={size.width} height={size.height} />
+            <div className='rotate-180'>
+                {/*<FractalSketch width={fractalSize} height={fractalSize} />*/}
+                <SmileySketch width={fractalSize} height={fractalSize} />
             </div>
         </div>
     );

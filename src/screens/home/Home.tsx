@@ -1,15 +1,11 @@
 import Profile from "./components/Profile.tsx";
-import Skills from "./components/Skills.tsx";
-import Experience from "./components/Experience.tsx";
-import Projects from "./components/Projects.tsx";
+import Skills2 from "./components/Skills2.tsx";
 
 const Home = () => {
     return (
-        <div className='max-w-[80%] mx-auto'>
+        <div className='bg-[#350202]'>
             <Profile />
-            <Skills />
-            <Experience />
-            <Projects />
+            <Skills2 />
         </div>
     );
 };

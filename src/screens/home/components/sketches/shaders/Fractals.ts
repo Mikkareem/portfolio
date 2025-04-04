@@ -34,7 +34,7 @@ varying vec2 vTexCoord;
 
 vec3 pallete(float t) {
     vec3 a = vec3(.5, .2893, .5);
-    vec3 b = vec3(.5, .5, .7384);
+    vec3 b = vec3(.1892, .7812, .7384);
     vec3 c = vec3(.7233, .436, 1.);
     vec3 d = vec3(.263, .416, .557);
     return a + b * cos(6.28318*(c*t+d));
@@ -42,7 +42,6 @@ vec3 pallete(float t) {
 
 void main() {
   vec2 uv = vTexCoord * 2.0 - 1.0;
-  uv.x *= (uv.x / uv.y);
 
   vec2 uv0 = uv;
   vec3 finalColor = vec3(0.0);
@@ -51,15 +50,20 @@ void main() {
     uv = fract(uv * 1.5) - 0.5;
     float d = length(uv) * exp(-length(uv0));
 
-    vec3 col = pallete(length(uv0) + i*.4+ iTime * .4);
+    vec3 col = pallete(length(uv0) + i*.4+ iTime*.4);
 
-    d = sin(d * 8. + iTime)/8.;
+    d = sin(d * 4. + iTime)/8.;
     d = abs(d);
-    d = pow(0.01 / d, 1.2);
+    d = pow(0.0078 / d, 1.1);
 
-    finalColor += col * d/3.;
+    finalColor += col * d/5.;
+  }
+  
+  float alpha = 1.0;
+  if(finalColor.r < 0.1 && finalColor.g < 0.1 && finalColor.b < 0.1) {
+    alpha = 0.0;
   }
 
-  gl_FragColor = vec4(finalColor, 1.);
+  gl_FragColor = vec4(finalColor, alpha);
 }
 `

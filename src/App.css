@@ -1,3 +1,52 @@
-#root {
-  max-width: 1280px;
+/*#root {*/
+/*  max-width: 1280px;*/
+/*}*/
+
+@property --rotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.skill-container {
+  position: relative;
+  /*   background-color: yellow; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  perspective: 1000px;
+  perspective-origin: center -300px;
+  transform-style: preserve-3d;
+}
+
+.skill-card {
+  padding: 16px;
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 2px solid white;
+
+  animation: rotateCarousel 15s linear infinite;
+}
+
+/*.skill-card:nth-child(3n) {*/
+/*  background-color: red;*/
+/*}*/
+
+/*.skill-card:nth-child(3n+1) {*/
+/*  background-color: green;*/
+/*}*/
+
+/*.skill-card:nth-child(3n+2) {*/
+/*  background-color: blue;*/
+/*}*/
+
+@keyframes rotateCarousel {
+  0% {
+    --rotation: 0deg;
+  }
+  100% {
+    --rotation: 360deg;
+  }
 }
