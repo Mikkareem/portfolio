@@ -9,7 +9,8 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const MiniProjects = lazy(() => import('./pages/MiniProjects'));
-const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const MajorProjectDetail = lazy(() => import('./pages/MajorProjectDetail'));
+const MiniProjectDetail = lazy(() => import('./pages/MiniProjectDetail'));
 const Blogs = lazy(() => import('./pages/Blogs'));
 const BlogDetail = lazy(() => import('./pages/BlogDetail'));
 const Skills = lazy(() => import('./pages/Skills'));
@@ -55,7 +56,8 @@ export default function App() {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/mini-projects" element={<MiniProjects />} />
-              <Route path="/project/:slug" element={<ProjectDetail />} />
+              <Route path="/project/:slug" element={<MajorProjectDetail />} />
+              <Route path="/mini-project/:slug" element={<MiniProjectDetail />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/blog/:slug" element={<BlogDetail />} />
               <Route path="/skills" element={<Skills />} />

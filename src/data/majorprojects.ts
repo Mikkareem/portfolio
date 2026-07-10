@@ -1,7 +1,7 @@
 import { MajorProject } from '../types';
-import codehornMD from './markdowns/codehorn.md?raw';
-import notemyshowMD from './markdowns/notemyshow.md?raw';
-import howzappMD from './markdowns/howzapp.md?raw';
+import codehornMD from './markdowns/majorprojects/codehorn.md?raw';
+import notemyshowMD from './markdowns/majorprojects/notemyshow.md?raw';
+import howzappMD from './markdowns/majorprojects/howzapp.md?raw';
 
 export const majorProjectsData: MajorProject[] = [
   {

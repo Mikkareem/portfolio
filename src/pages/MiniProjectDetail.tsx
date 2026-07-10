@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, Github, ExternalLink, Activity, Layers, CornerDownRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Activity, Layers, CornerDownRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portfolioRepository } from '../data/repositories/portfolioRepository';
-import { FadeIn, StaggerContainer, StaggerItem } from '../components/animations/FadeIn';
+import { FadeIn } from '../components/animations/FadeIn';
 import { MarkdownRenderer } from '../components/common/MarkdownRenderer';
 import { 
   SPRING_TECHNOLOGIES, 
@@ -12,9 +12,9 @@ import {
   TESTING_TECHNOLOGIES 
 } from '../data/technologies';
 
-export const ProjectDetail = () => {
+export const MiniProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const project = portfolioRepository.getProjectBySlug(slug || '');
+  const project = portfolioRepository.getMiniProjects().find(p => p.slug === slug);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const slides = project ? [project.thumbnailImage, ...project.screenshots].filter(Boolean) : [];
@@ -32,7 +32,7 @@ export const ProjectDetail = () => {
       <div className="min-h-screen pt-36 text-center space-y-4 font-sans">
         <h2 className="text-2xl font-display font-bold text-white">Project Specification Not Found</h2>
         <p className="text-text-muted">The system could not retrieve the target release metadata.</p>
-        <Link to="/projects" className="inline-flex items-center gap-2 text-brand-primary font-semibold hover:underline bg-surface py-2 px-4 rounded-xl border border-white/5">
+        <Link to="/mini-projects" className="inline-flex items-center gap-2 text-brand-primary font-semibold hover:underline bg-surface py-2 px-4 rounded-xl border border-white/5">
           <ArrowLeft className="w-4 h-4" /> Back to Catalog
         </Link>
       </div>
@@ -52,7 +52,7 @@ export const ProjectDetail = () => {
         <FadeIn direction="up">
           <Link
             id="back-to-projects-btn"
-            to="/projects"
+            to="/mini-projects"
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-text-muted hover:text-white transition-colors py-2 px-4 rounded-xl border border-white/5 bg-surface-card"
           >
             <ArrowLeft className="w-4 h-4" /> Return to Catalog
@@ -269,4 +269,5 @@ export const ProjectDetail = () => {
     </div>
   );
 };
-export default ProjectDetail;
+
+export default MiniProjectDetail;

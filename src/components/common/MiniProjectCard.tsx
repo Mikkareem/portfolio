@@ -28,7 +28,7 @@ export const MiniProjectCard = ({ project, idx }: MiniProjectCardProps) => {
 
       {/* Entire Card Clickable Overlay */}
       <Link
-        to={`/project/${project.slug}`}
+        to={`/mini-project/${project.slug}`}
         className="absolute inset-0 z-10"
         aria-label={`View details for ${project.name}`}
       />
