@@ -114,7 +114,11 @@ export const ProjectDetail = () => {
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeSlide}
-                  src={slides[activeSlide]}
+                  src={
+                    slides[activeSlide].startsWith('http')
+                      ? slides[activeSlide]
+                      : `${import.meta.env.BASE_URL}${slides[activeSlide].startsWith('/') ? slides[activeSlide].slice(1) : slides[activeSlide]}`
+                  }
                   alt={`${project.name} Interface ${activeSlide + 1}`}
                   referrerPolicy="no-referrer"
                   initial={{ opacity: 0, scale: 0.98 }}

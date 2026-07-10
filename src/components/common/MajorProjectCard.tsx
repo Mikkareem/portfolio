@@ -35,7 +35,11 @@ export const MajorProjectCard = ({ project, idx }: MajorProjectCardProps) => {
 
       <div className="h-60 overflow-hidden relative">
         <img
-          src={project.thumbnailImage}
+          src={
+            project.thumbnailImage.startsWith('http')
+              ? project.thumbnailImage
+              : `${import.meta.env.BASE_URL}${project.thumbnailImage.startsWith('/') ? project.thumbnailImage.slice(1) : project.thumbnailImage}`
+          }
           alt={project.name}
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
