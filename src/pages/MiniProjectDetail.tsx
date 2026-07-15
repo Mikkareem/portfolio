@@ -1,23 +1,42 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ExternalLink, Activity, Layers, CornerDownRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Activity, Layers, CornerDownRight, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { portfolioRepository } from '../data/repositories/portfolioRepository';
 import { FadeIn } from '../components/animations/FadeIn';
 import { MarkdownRenderer } from '../components/common/MarkdownRenderer';
-import { 
-  SPRING_TECHNOLOGIES, 
-  INFRASTRUCTURE_TECHNOLOGIES, 
-  MOBILE_TECHNOLOGIES, 
-  TESTING_TECHNOLOGIES 
+import {
+  SPRING_TECHNOLOGIES,
+  INFRASTRUCTURE_TECHNOLOGIES,
+  MOBILE_TECHNOLOGIES,
+  TESTING_TECHNOLOGIES
 } from '../data/technologies';
+
+const getYoutubeEmbedUrl = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
+};
 
 export const MiniProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = portfolioRepository.getMiniProjects().find(p => p.slug === slug);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeVideo, setActiveVideo] = useState(0);
+  const [activeYoutubeVideo, setActiveYoutubeVideo] = useState(0);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
 
-  const slides = project ? [project.thumbnailImage, ...project.screenshots].filter(Boolean) : [];
+  useEffect(() => {
+    setIsVideoLoading(true);
+  }, [activeVideo]);
+
+  const hasScreenshots = project ? (project.screenshots && project.screenshots.length > 0) : false;
+  const hasVideos = project ? (project.videos && project.videos.length > 0) : false;
+  const hasYoutubeVideos = project ? (project.youtubeVideos && project.youtubeVideos.length > 0) : false;
+
+  const slides = project && hasScreenshots ? project.screenshots : [];
+  const videos = project && hasVideos ? project.videos! : [];
+  const youtubeVideos = project && hasYoutubeVideos ? project.youtubeVideos! : [];
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -125,7 +144,7 @@ export const MiniProjectDetail = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </AnimatePresence>
 
@@ -169,6 +188,103 @@ export const MiniProjectDetail = () => {
           </FadeIn>
         )}
 
+        {/* Videos Container */}
+        {hasVideos && (
+          <FadeIn direction="up" delay={0.25}>
+            <div className="max-w-4xl mx-auto space-y-4">
+              <div className="relative w-full h-[300px] sm:h-[450px] md:h-[500px] overflow-hidden rounded-2xl border border-white/5 shadow-2xl bg-surface-card flex items-center justify-center">
+                {isVideoLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-10">
+                    <Loader2 className="w-10 h-10 text-brand-primary animate-spin" />
+                  </div>
+                )}
+                {videos[activeVideo].toLowerCase().endsWith('.gif') ? (
+                  <img
+                    src={videos[activeVideo]}
+                    alt={`${project.name} Demo GIF ${activeVideo + 1}`}
+                    className="w-full h-full object-contain"
+                    referrerPolicy="no-referrer"
+                    onLoad={() => setIsVideoLoading(false)}
+                  />
+                ) : (
+                  <video
+                    key={videos[activeVideo]}
+                    src={videos[activeVideo]}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-contain"
+                    onCanPlay={() => setIsVideoLoading(false)}
+                    onWaiting={() => setIsVideoLoading(true)}
+                    onPlaying={() => setIsVideoLoading(false)}
+                  />
+                )}
+              </div>
+
+              {/* Prev/Next Navigation Below the Container */}
+              {videos.length > 1 && (
+                <div className="flex justify-center items-center gap-4">
+                  <button
+                    onClick={() => setActiveVideo(prev => (prev - 1 + videos.length) % videos.length)}
+                    className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Prev Video
+                  </button>
+                  <span className="text-xs font-mono text-text-muted">
+                    {activeVideo + 1} / {videos.length}
+                  </span>
+                  <button
+                    onClick={() => setActiveVideo(prev => (prev + 1) % videos.length)}
+                    className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
+                  >
+                    Next Video <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </FadeIn>
+        )}
+
+        {/* YouTube Videos Container */}
+        {hasYoutubeVideos && (
+          <FadeIn direction="up" delay={0.25}>
+            <div className="max-w-4xl mx-auto space-y-4">
+              <div className="relative w-full h-[300px] sm:h-[450px] md:h-[500px] overflow-hidden rounded-2xl border border-white/5 shadow-2xl bg-surface-card flex items-center justify-center">
+                <iframe
+                  key={youtubeVideos[activeYoutubeVideo]}
+                  src={getYoutubeEmbedUrl(youtubeVideos[activeYoutubeVideo])}
+                  title={`${project.name} YouTube Video ${activeYoutubeVideo + 1}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full border-0 absolute inset-0"
+                />
+              </div>
+
+              {/* Prev/Next Navigation Below the Container */}
+              {youtubeVideos.length > 1 && (
+                <div className="flex justify-center items-center gap-4">
+                  <button
+                    onClick={() => setActiveYoutubeVideo(prev => (prev - 1 + youtubeVideos.length) % youtubeVideos.length)}
+                    className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Prev Video
+                  </button>
+                  <span className="text-xs font-mono text-text-muted">
+                    {activeYoutubeVideo + 1} / {youtubeVideos.length}
+                  </span>
+                  <button
+                    onClick={() => setActiveYoutubeVideo(prev => (prev + 1) % youtubeVideos.length)}
+                    className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
+                  >
+                    Next Video <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </FadeIn>
+        )}
+
         {/* Descriptive Long-form Details & Tech side grids */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4">
 
@@ -182,19 +298,6 @@ export const MiniProjectDetail = () => {
             <FadeIn direction="up" delay={0.1}>
               <div className="glass-panel p-6 sm:p-8 rounded-2xl border-white/5 bg-surface-card space-y-4">
                 <MarkdownRenderer content={project.overview} />
-                <div className="space-y-3 pt-4 border-t border-white/5">
-                  <h3 className="text-sm font-semibold tracking-wide text-white">Engine Specifications</h3>
-                  <ul className="space-y-2 text-sm text-text-muted">
-                    <li className="flex items-center gap-2">
-                      <CornerDownRight className="w-3.5 h-3.5 text-brand-primary" />
-                      <span>Decoupled cloud architecture configured across high-concurrency systems.</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CornerDownRight className="w-3.5 h-3.5 text-brand-primary" />
-                      <span>Responsive multi-platform deployments optimizing local system state persistence.</span>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </FadeIn>
           </div>
@@ -214,19 +317,11 @@ export const MiniProjectDetail = () => {
                     <span className="text-text-muted">Platform Scope:</span>
                     <span className="text-white font-semibold capitalize">{project.platforms.join(', ')}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">System Complexity:</span>
-                    <span className="text-white font-semibold">Production Ready</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-muted">Persistence Cache:</span>
-                    <span className="text-white font-semibold">Enabled</span>
-                  </div>
                 </div>
               </div>
             </FadeIn>
 
-             {/* Categorized Tech Cards */}
+            {/* Categorized Tech Cards */}
             {(() => {
               const springTechs = project.technologies.filter(t => SPRING_TECHNOLOGIES.includes(t));
               const infraTechs = project.technologies.filter(t => INFRASTRUCTURE_TECHNOLOGIES.includes(t));

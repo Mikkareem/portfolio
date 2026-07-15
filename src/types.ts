@@ -96,15 +96,17 @@ export interface Project {
   tags: ProjectTag[];
   description: string;
   overview: string;
-  thumbnailImage: string;
   platforms: PlatformType[];
   source: string; // Link
   technologies: ProjectTechnology[];
   screenshots: string[]; // Links
+  videos?: string[]; // Gif(s), MP4(s), etc.
+  youtubeVideos?: string[]; // YouTube link(s)
 }
 
 export interface MajorProject extends Project {
   type: 'major';
+  thumbnailImage: string;
 }
 
 export interface MiniProject extends Project {

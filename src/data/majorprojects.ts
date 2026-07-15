@@ -2,6 +2,11 @@ import { MajorProject } from '../types';
 import codehornMD from './markdowns/majorprojects/codehorn.md?raw';
 import notemyshowMD from './markdowns/majorprojects/notemyshow.md?raw';
 import howzappMD from './markdowns/majorprojects/howzapp.md?raw';
+import sudokuMD from './markdowns/majorprojects/sudoku.md?raw';
+import memecutMD from './markdowns/majorprojects/memecut.md?raw';
+import apiclientkMD from './markdowns/majorprojects/apiclientk.md?raw';
+import rubikscubeMD from './markdowns/majorprojects/rubikscube.md?raw';
+import duberdolaMD from './markdowns/majorprojects/duberdola.md?raw';
 
 export const majorProjectsData: MajorProject[] = [
   {
@@ -9,7 +14,7 @@ export const majorProjectsData: MajorProject[] = [
     name: 'CodeHorn',
     slug: 'codehorn',
     type: 'major',
-    description: 'A distributed message broker and notifications pipeline designed for low latency client sync and containerized fallback clusters.',
+    description: 'A cloud-native online coding judge platform inspired by LeetCode, featuring secure containerized code execution, microservices, Kubernetes, and modern React frontend technologies.',
     overview: codehornMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_Codehorn.png',
     platforms: ['web', 'backend'],
@@ -37,7 +42,7 @@ export const majorProjectsData: MajorProject[] = [
     name: 'NoteMyShow',
     slug: 'notemyshow',
     type: 'major',
-    description: 'Multi-tenant payment billing ledger and microservice gateway with active transaction lock concurrency and distributed configs.',
+    description: 'A cross-platform movie ticket booking application inspired by BookMyShow, featuring interactive seat selection, Stripe payments, and a production-ready cloud-native backend.',
     overview: notemyshowMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_NoteMyShow.png',
     platforms: ['web', 'android', 'ios'],
@@ -66,7 +71,7 @@ export const majorProjectsData: MajorProject[] = [
     name: 'Howzapp',
     slug: 'howzapp',
     type: 'major',
-    description: 'A native health synchronization mobile app utilizing custom canvas charts, multiplatform state, and mock telemetry streaming.',
+    description: 'A cloud-native WhatsApp-inspired messaging platform with real-time chats, media sharing, communities, status updates, and a scalable Kotlin microservices backend.',
     overview: howzappMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_Howzapp.png',
     platforms: ['backend', 'android', 'ios', 'desktop'],
@@ -84,18 +89,15 @@ export const majorProjectsData: MajorProject[] = [
       { color: ['#ef4444', '#f43f5e'], label: 'Social Media' },
       { color: ['#6366f1'], label: 'Whatsapp Clone' }
     ],
-    screenshots: [
-      'https://images.unsplash.com/photo-1510017808638-a59b57144825?auto=format&fit=crop&q=80&w=600',
-      'https://images.unsplash.com/photo-1522881195387-3970343a5899?auto=format&fit=crop&q=80&w=600'
-    ]
+    screenshots: []
   },
   {
     id: 'memecut',
     name: 'MemeCut',
     slug: 'memecut',
     type: 'major',
-    description: 'Experimental laboratory testing Navigation 3 and custom gesture transitions in multiplatform container views.',
-    overview: 'A showcase of Android/iOS navigation animations, state hoisting, and custom UI transitions on top of Compose Multiplatform.',
+    description: 'A cross-platform meme generator that lets users create, customize, and export memes using a shared Kotlin Multiplatform codebase.',
+    overview: memecutMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_MemeCut.png',
     platforms: ['android', 'ios'],
     source: 'https://github.com/Mikkareem/navigation-lab',
@@ -115,8 +117,8 @@ export const majorProjectsData: MajorProject[] = [
     name: 'ApiClientK',
     slug: 'apiclientk',
     type: 'major',
-    description: 'Spring GraphQL API service testing query complexity, schema structures, and data fetchers.',
-    overview: 'A reference API service built with Spring GraphQL and Spring Data JDBC, demonstrating micro-optimizations and query complexity rules.',
+    description: "A native Android 3D Rubik's Cube simulator powered by a custom OpenGL ES rendering engine with smooth animations and interactive controls.",
+    overview: apiclientkMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_ApiClientK.png',
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/Mikkareem/graphql-core',
@@ -138,8 +140,8 @@ export const majorProjectsData: MajorProject[] = [
     name: 'Sudoku Game / Solver',
     slug: 'sudoku',
     type: 'major',
-    description: 'Spring GraphQL API service testing query complexity, schema structures, and data fetchers.',
-    overview: 'A reference API service built with Spring GraphQL and Spring Data JDBC, demonstrating micro-optimizations and query complexity rules.',
+    description: 'A cross-platform Sudoku game and solver built with Kotlin Multiplatform and Compose Multiplatform, featuring an interactive gameplay experience and an intelligent solving engine.',
+    overview: sudokuMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_Sudoku.png',
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/Mikkareem/graphql-core',
@@ -157,11 +159,11 @@ export const majorProjectsData: MajorProject[] = [
   },
   {
     id: 'rubikscube',
-    name: 'RubiksCube3D',
+    name: 'Rubiks Cube 3D Simulation',
     slug: 'rubikscube',
     type: 'major',
     description: 'Spring GraphQL API service testing query complexity, schema structures, and data fetchers.',
-    overview: 'A reference API service built with Spring GraphQL and Spring Data JDBC, demonstrating micro-optimizations and query complexity rules.',
+    overview: rubikscubeMD,
     thumbnailImage: '/images/projects/thumbnails/Gemini_Generated_Image_Codehorn_Thumbnail.png',
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/Mikkareem/graphql-core',
@@ -182,8 +184,8 @@ export const majorProjectsData: MajorProject[] = [
     name: 'DuberDola',
     slug: 'duberdola',
     type: 'major',
-    description: 'Spring GraphQL API service testing query complexity, schema structures, and data fetchers.',
-    overview: 'A reference API service built with Spring GraphQL and Spring Data JDBC, demonstrating micro-optimizations and query complexity rules.',
+    description: 'A cross-platform ride-booking application inspired by Uber and Ola, featuring native Google Maps integration and a responsive Compose Multiplatform interface.',
+    overview: duberdolaMD,
     thumbnailImage: '/images/projects/thumbnails/Gemini_Generated_Image_Codehorn_Thumbnail.png',
     platforms: ['android', 'ios'],
     source: 'https://github.com/Mikkareem/graphql-core',
