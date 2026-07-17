@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Award, Briefcase, Calendar, GraduationCap, ArrowRight, UserCheck, ShieldCheck, Milestone } from 'lucide-react';
+import { Briefcase, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
 import { portfolioRepository } from '../data/repositories/portfolioRepository';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/animations/FadeIn';
 
