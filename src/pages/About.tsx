@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
 import { Award, Briefcase, Calendar, GraduationCap, ArrowRight, UserCheck, ShieldCheck, Milestone } from 'lucide-react';
 import { portfolioRepository } from '../data/repositories/portfolioRepository';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/animations/FadeIn';
@@ -10,71 +9,71 @@ export const About = () => {
   const focusAreas = [
     {
       title: 'Full Stack Development',
-      badge: 'Web Systems',
-      description: 'Architecting robust reactive frontends combined with scalable microservices. Skilled in standard REST APIs, full state memoization, and real-time async communication schemas.',
-      tech: 'ReactJS, TypeScript, NextJS, Spring Boot'
+      badge: 'Web Applications',
+      description: 'Designing and building scalable web applications from backend APIs to responsive user interfaces. Experienced in developing microservices, REST APIs, and modern frontend architectures that deliver reliable, high-performance user experiences.',
+      tech: 'Spring Boot, React, Next.js, TypeScript'
     },
     {
       title: 'Mobile Development',
-      badge: 'Native Experience',
-      description: 'Building modern cross-platform and fully native mobile applications. Expert in declarative visual layouts, custom gesture states, and lightweight background synchronization.',
-      tech: 'Jetpack Compose, Kotlin Multiplatform, Room, Ktor'
+      badge: 'Android & Multiplatform',
+      description: 'Creating modern Android and cross-platform applications with a focus on clean architecture, intuitive UI, and offline-first experiences. Passionate about building maintainable apps using the latest Kotlin ecosystem.',
+      tech: 'Kotlin, Jetpack Compose, Compose Multiplatform, Kotlin Multiplatform, Room'
     },
     {
       title: 'Cloud Native Engineering',
-      badge: 'Cluster Mesh',
-      description: 'Deploying high-availability container topologies. Proficient in persistent volume allocations, multi-tenant cluster boundaries, and security ingress parameters.',
+      badge: 'Scalable Infrastructure',
+      description: 'Building and deploying cloud-native applications using containers and Kubernetes. Experienced in designing scalable deployments, optimizing cloud infrastructure, and improving application reliability and operational efficiency.',
       tech: 'Kubernetes, Docker, AWS, GCP, Terraform'
     },
     {
-      title: 'DevOps & GitOps',
-      badge: 'Continuous Flow',
-      description: 'Automating standard CI/CD deployment pipelines. Designing declarative deployment pipelines, automatic verification hooks, and roll-back workflows.',
-      tech: 'ArgoCD, GitActions, Helm, Jenkins, Argo'
+      title: 'DevOps & CI/CD',
+      badge: 'Automation',
+      description: 'Automating build, test, and deployment workflows to accelerate software delivery. Implementing CI/CD pipelines, GitOps practices, and infrastructure automation for reliable and repeatable releases.',
+      tech: 'GitHub Actions, ArgoCD, Helm, Jenkins'
     }
   ];
 
   const milestones = [
     {
-      year: '2024 - Present',
-      role: 'Lead Full Stack & Mobile Engineer',
-      company: 'NextGen Engineering Solutions',
-      details: 'Heading development on distributed Kotlin Multiplatform configurations and containerized microservice clusters on AWS EKS. Synchronizing multi-brand teams, implementing ArgoCD continuous feedback loops.'
+      year: '2023 - Present',
+      role: 'Senior Software Engineer',
+      company: 'Dotcod Innovation Pvt. Ltd.',
+      details: 'Leading the development of scalable backend services with Spring Boot and Spring Cloud while building Android and Compose Multiplatform applications. Designed cloud-native solutions on Kubernetes and AWS, implemented high-performance APIs, and optimized infrastructure for reliability, scalability, and cost efficiency.'
     },
     {
-      year: '2022 - 2024',
-      role: 'Senior Software Engineer (Backend/DevOps Focus)',
-      company: 'Zenith Tech Group',
-      details: 'Built resilient Spring Cloud routing frameworks processing high-concurrency ticket locking layers. Designed custom Kubernetes ingress configurations and cut AWS billing parameters by 24% via scale-to-zero setups.'
-    },
-    {
-      year: '2021 - 2022',
-      role: 'Full Stack Web & Mobile App Developer',
-      company: 'Quantum Studio Labs',
-      details: 'Authored premium React dashboards and custom Jetpack Compose layout engines. Implemented secure offline-first caching structures with Room and state flow managers.'
+      year: '2021 - 2023',
+      role: 'Senior Software Engineer',
+      company: 'Softeon',
+      details: 'Delivered enterprise warehouse management solutions across the backend, web, and Android platforms. Developed Spring Boot microservices, built React-based web applications, and created modern Android experiences using Jetpack Compose with offline-first architecture powered by Room, Coroutines, and StateFlow.'
     },
     {
       year: '2019 - 2021',
-      role: 'Systems Developer (Associate)',
-      company: 'Apex Code Systems',
-      details: 'Managed core Java API endpoints, authored Unit Testing packages, and configured continuous verification workflows inside Jenkins clusters.'
+      role: 'Software Engineer',
+      company: 'Roboteon',
+      details: 'Developed and maintained Java backend applications and RESTful APIs, implemented business logic, integrated databases, and improved software quality through unit testing, code reviews, and CI/CD automation with Jenkins.'
+    },
+    {
+      year: '2020 - Present',
+      role: 'Senior Software Engineer',
+      company: 'Freelancer',
+      details: 'Collaborate with startups and businesses to build end-to-end web and mobile applications. Deliver scalable backend systems with Spring Boot, modern React frontends, and Android applications while deploying and maintaining cloud infrastructure on AWS.'
     }
   ];
 
   return (
     <div id="about-page" className="relative min-h-screen pt-28 pb-20 font-sans">
-      
+
       {/* Visual background meshes */}
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/3 right-10 w-96 h-96 bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-20">
-        
+
         {/* Header segment */}
         <div className="max-w-3xl space-y-4">
           <FadeIn direction="up">
             <span className="text-xs font-mono font-bold tracking-widest text-[#38bdf8] uppercase">GET TO KNOW ME</span>
-            <h1 className="text-4xl font-display font-extrabold tracking-tight text-white sm:text-5xl">About <span className="text-gradient">Mohamed</span></h1>
+            <h1 className="text-4xl font-display font-extrabold tracking-tight text-white sm:text-5xl">About <span className="text-gradient">Mohamed Irsath Kareem</span></h1>
           </FadeIn>
           <FadeIn direction="up" delay={0.15}>
             <p className="text-lg text-text-muted leading-relaxed">
