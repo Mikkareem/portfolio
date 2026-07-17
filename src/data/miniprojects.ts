@@ -41,7 +41,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://user-images.githubusercontent.com/56153409/285583440-2e7061ac-5b7a-49c6-8fc7-086be6e3b304.mp4'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://user-images.githubusercontent.com/56153409/285583440-2e7061ac-5b7a-49c6-8fc7-086be6e3b304.mp4'
+    }
   },
   {
     id: 'smoke-particles-effect',
@@ -60,7 +63,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/2b64711d-7ed0-4e30-928d-88e28f786f9c'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/2b64711d-7ed0-4e30-928d-88e28f786f9c'
+    }
   },
   {
     id: 'random-movers-effect',
@@ -79,7 +85,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/07b89a19-1c8f-4ceb-b826-c61e4919c8de',
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/07b89a19-1c8f-4ceb-b826-c61e4919c8de'
+    }
   },
   {
     id: 'gesture-indication-particles-effect',
@@ -98,7 +107,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/fc79540b-3d89-4087-82c1-ad32086a1b31'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/fc79540b-3d89-4087-82c1-ad32086a1b31'
+    }
   },
   {
     id: 'deck-cards-revealing-animation',
@@ -117,7 +129,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://user-images.githubusercontent.com/56153409/285597968-c9b1b4aa-42c7-4ba6-a00f-ac87f544aa56.mp4',
-    ]
+    ],
+    thumbnail: {
+      video: 'https://user-images.githubusercontent.com/56153409/285597968-c9b1b4aa-42c7-4ba6-a00f-ac87f544aa56.mp4'
+    }
   },
   {
     id: 'oscillating-heart-animation',
@@ -135,8 +150,11 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [],
     videos: [
-      'https://gist.github.com/assets/56153409/2f756db3-dcca-4194-bae3-2010e96d0b2c'
-    ]
+      'https://gist.github.com/assets/56153409/2f756db3-dcca-4194-bae3-2010e96d0b2c',
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/2f756db3-dcca-4194-bae3-2010e96d0b2c'
+    }
   },
   {
     id: 'watery-wavy-text-color-effect',
@@ -157,7 +175,11 @@ export const miniProjectsData: MiniProject[] = [
     ],
     videos: [
       'https://user-images.githubusercontent.com/56153409/278870766-6dbfbfdc-4064-49d8-a6c2-c478dce92b07.mp4'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://user-images.githubusercontent.com/56153409/278870766-6dbfbfdc-4064-49d8-a6c2-c478dce92b07.mp4',
+      image: 'https://user-images.githubusercontent.com/56153409/278866038-94d87ce2-0b9b-4a37-8476-b7291aeb9b20.png'
+    }
   },
   {
     id: 'glassy-image-effect',
@@ -175,7 +197,10 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://user-images.githubusercontent.com/56153409/278818511-c4fbc0bb-5b21-448f-aa43-b0b5ee1ce132.png'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://user-images.githubusercontent.com/56153409/278818511-c4fbc0bb-5b21-448f-aa43-b0b5ee1ce132.png'
+    }
   },
   {
     id: 'star-rating-fill-animation',
@@ -194,7 +219,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/22460e20-7a48-4c92-b8ce-33cf48fc6f82',
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/22460e20-7a48-4c92-b8ce-33cf48fc6f82'
+    }
   },
   {
     id: 'box-drop-shadow-effect',
@@ -212,7 +240,10 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://user-images.githubusercontent.com/56153409/278876486-3c798b3d-4fbc-4923-97e7-1c8dedc2e2ef.png'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://user-images.githubusercontent.com/56153409/278876486-3c798b3d-4fbc-4923-97e7-1c8dedc2e2ef.png'
+    }
   },
   {
     id: 'expandable-menu-animation',
@@ -231,7 +262,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/ee879c3a-8b9f-431e-80a8-e4bee24d4ec0'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/ee879c3a-8b9f-431e-80a8-e4bee24d4ec0'
+    }
   },
   {
     id: 'animated-go-button-1',
@@ -250,7 +284,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://user-images.githubusercontent.com/56153409/278941310-3f9a68f1-bca2-4fc4-aca4-2142574cc0d3.mp4'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://user-images.githubusercontent.com/56153409/278941310-3f9a68f1-bca2-4fc4-aca4-2142574cc0d3.mp4'
+    }
   },
   {
     id: 'animated-go-button-2',
@@ -269,7 +306,10 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://user-images.githubusercontent.com/56153409/279030620-1cd652f2-ea89-4e40-9b56-e6605f5a153b.mp4'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://user-images.githubusercontent.com/56153409/279030620-1cd652f2-ea89-4e40-9b56-e6605f5a153b.mp4'
+    }
   },
   {
     id: 'clock-view',
@@ -287,7 +327,10 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://gist.github.com/assets/56153409/bb27a871-c7af-4034-85c3-8404fc77b9ce'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://gist.github.com/assets/56153409/bb27a871-c7af-4034-85c3-8404fc77b9ce'
+    }
   },
   {
     id: 'custom-gradient-textfield',
@@ -306,14 +349,17 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/9a524900-e102-4b86-8c3d-fa49830e066b'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/9a524900-e102-4b86-8c3d-fa49830e066b'
+    }
   },
   {
     id: 'food-delivery-app-ui',
     name: 'Food Delivery App UI',
     slug: 'food-delivery-app-ui',
     type: 'mini',
-    description: 'Description',
+    description: 'A modern Food Delivery application UI built entirely with Jetpack Compose, showcasing advanced custom layouts, handcrafted drawing APIs, reusable composables, and responsive UI design. The project demonstrates creating production-quality interfaces using custom measurement and placement logic instead of relying solely on standard layouts.',
     overview: fooddeliveryappuiMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/62f431f34174c1e20cc5e6addeb54586',
@@ -329,7 +375,7 @@ export const miniProjectsData: MiniProject[] = [
     name: 'Chat App UI with Typing Indications',
     slug: 'chat-app-ui-with-typing-indications',
     type: 'mini',
-    description: 'Description',
+    description: 'A modern Chat Application UI built entirely with Jetpack Compose, featuring conversation lists, chat details, animated typing indicators, custom message bubbles, responsive layouts, and state-driven interactions. The project showcases advanced Compose concepts including custom arrangements, animated transitions, reusable composables, and dynamic chat interfaces.',
     overview: chatappuiwithtypingindicationsMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/8a58bc9a3a5518ff0c612395d90206e5',
@@ -341,14 +387,17 @@ export const miniProjectsData: MiniProject[] = [
     screenshots: [],
     videos: [
       'https://gist.github.com/assets/56153409/5b697ad6-fcae-4eef-a29e-07cd37a803a3'
-    ]
+    ],
+    thumbnail: {
+      video: 'https://gist.github.com/assets/56153409/5b697ad6-fcae-4eef-a29e-07cd37a803a3'
+    }
   },
   {
     id: 'instagram-multi-profile-container',
     name: 'Instagram Multi Profile Container',
     slug: 'instagram-multi-profile-container',
     type: 'mini',
-    description: 'Description',
+    description: "A custom Instagram-style Multi Profile Container built using Jetpack Compose's low-level Layout API. The component dynamically overlaps multiple profile images while maintaining flexible spacing and supporting any number of profiles through custom measurement and placement.",
     overview: instagrammultiprofilecontainerMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/ef73fd202a0ce82173f765b1304e7b44',
@@ -359,14 +408,17 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://gist.github.com/assets/56153409/0f90ad95-eee7-420f-abf1-ba107cc641e0'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://gist.github.com/assets/56153409/0f90ad95-eee7-420f-abf1-ba107cc641e0'
+    }
   },
   {
     id: 'instagram-post-card-ui',
     name: 'Instagram Post Card UI',
     slug: 'instagram-post-card-ui',
     type: 'mini',
-    description: 'Description',
+    description: 'A modern Instagram-inspired Post Card UI built entirely with Jetpack Compose, showcasing custom arrangements, reusable composables, rich text styling, carousel indicators, and responsive layouts. The project recreates the core Instagram post experience while demonstrating advanced Compose layout techniques and declarative UI design.',
     overview: instagrampostuiMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/b783efd34c7fe3bd28aeb447ac6023ff',
@@ -377,14 +429,17 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://gist.github.com/assets/56153409/fa28ceda-5f25-48ce-91fb-59a9655df039'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://gist.github.com/assets/56153409/fa28ceda-5f25-48ce-91fb-59a9655df039'
+    }
   },
   {
     id: 'instagram-profile-screen',
     name: 'Instagram Profile Screen',
     slug: 'instagram-profile-screen',
     type: 'mini',
-    description: 'Description',
+    description: 'A modern Instagram-inspired Profile Screen built entirely with Jetpack Compose, featuring a handcrafted verification badge, responsive profile statistics, reusable follower cards, and custom Canvas drawing. The project demonstrates advanced Compose graphics, custom shapes, and component-driven UI design.',
     overview: instagramprofilescreenMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/a0df7c2ed5ee5dcda4a42786beecf287',
@@ -395,16 +450,20 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://gist.github.com/assets/56153409/0faba3fb-e5bb-4549-9b97-f62473e7eb25'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://gist.github.com/assets/56153409/0faba3fb-e5bb-4549-9b97-f62473e7eb25'
+    }
   },
   {
     id: 'spotify-ui',
     name: 'Spotify UI',
     slug: 'spotify-ui',
     type: 'mini',
-    description: 'Description',
+    description: 'A modern Spotify-inspired music streaming interface built with Jetpack Compose, featuring a personalized home feed, recently played collections, horizontally scrolling recommendation sections, reusable music cards, custom chips, and a bottom navigation experience. The project focuses on creating scalable, component-driven UI architecture using declarative Compose APIs while closely following modern streaming application design principles.',
     overview: spotifymd,
     platforms: ['android', 'ios'],
+    createdAt: "2023-12-12", // yyyy-mm-dd
     source: 'https://gist.github.com/Mikkareem/1995b7467d65e9da79e91fa35d3627df',
     technologies: [],
     tags: [
@@ -413,7 +472,10 @@ export const miniProjectsData: MiniProject[] = [
     ],
     screenshots: [
       'https://gist.github.com/assets/56153409/a162268d-db1d-4c91-a7ca-3d66481a74e6'
-    ]
+    ],
+    thumbnail: {
+      image: 'https://gist.github.com/assets/56153409/a162268d-db1d-4c91-a7ca-3d66481a74e6'
+    }
   },
   {
     id: 'kanban-board-ui',

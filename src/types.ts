@@ -111,6 +111,11 @@ export interface MajorProject extends Project {
 
 export interface MiniProject extends Project {
   type: 'mini';
+  createdAt?: string;
+  thumbnail?: {
+    video?: string;
+    image?: string;
+  };
 }
 
 export interface Blog {
