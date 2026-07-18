@@ -59,6 +59,9 @@ export const MarkdownRenderer = ({ content }: MarkdownRendererProps) => {
     <div className="markdown-body">
       <ReactMarkdown
         components={{
+          pre({ children }) {
+            return <>{children}</>;
+          },
           code({ className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
             const isInline = !match;

@@ -18,12 +18,16 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const majorProjectsCount = portfolioRepository.getMajorProjects().length;
+  const miniProjectsCount = portfolioRepository.getMiniProjects().length;
+  const blogsCount = portfolioRepository.getBlogs().length;
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Mini Projects', path: '/mini-projects' },
-    { name: 'Blogs', path: '/blogs' },
+    { name: 'Projects', path: '/projects', count: majorProjectsCount },
+    { name: 'Mini Projects', path: '/mini-projects', count: miniProjectsCount },
+    { name: 'Blogs', path: '/blogs', count: blogsCount },
     { name: 'Skills', path: '/skills' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -64,12 +68,17 @@ export const Navbar = () => {
                   id={`nav-link-${link.name.toLowerCase()}`}
                   to={link.path}
                   className={({ isActive }) =>
-                    `relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                    `relative px-4 py-2 text-sm font-medium transition-colors duration-300 flex items-center gap-1.5 ${
                       isActive ? 'text-brand-primary' : 'text-text-muted hover:text-white'
                     }`
                   }
                 >
                   <span>{link.name}</span>
+                  {link.count !== undefined && (
+                    <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none rounded-full bg-brand-secondary text-white shadow-[0_0_10px_rgba(139,92,246,0.5)]">
+                      {link.count}
+                    </span>
+                  )}
                   {isActive && (
                     <motion.span
                       layoutId="active-indicator"
@@ -131,13 +140,18 @@ export const Navbar = () => {
                     id={`mobile-nav-link-${link.name.toLowerCase()}`}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 rounded-lg text-base font-semibold tracking-wide transition-all duration-300 ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-lg text-base font-semibold tracking-wide transition-all duration-300 ${
                       isActive
                         ? 'bg-brand-primary/10 text-brand-primary border-l-2 border-brand-primary'
                         : 'text-text-muted hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    {link.count !== undefined && (
+                      <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none rounded-full bg-brand-secondary text-white shadow-[0_0_10px_rgba(139,92,246,0.5)]">
+                        {link.count}
+                      </span>
+                    )}
                   </Link>
                 );
               })}

@@ -19,7 +19,7 @@ export const Skills = () => {
       <div className="absolute bottom-1/4 left-5 w-80 h-80 bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
-        
+
         {/* Page Header */}
         <div className="max-w-3xl space-y-4">
           <FadeIn direction="up">
@@ -39,12 +39,12 @@ export const Skills = () => {
             {skillGroups.map((group) => (
               <StaggerItem key={group.category}>
                 <div className="glass-panel p-6 sm:p-8 rounded-2xl border-white/5 bg-surface-card h-full space-y-6 flex flex-col justify-between group/card hover:border-brand-primary/20 transition-all duration-300 shadow-lg">
-                  
+
                   {/* Category Title Header */}
                   <div className="border-b border-white/5 pb-4">
                     <h2 className="text-xl font-display font-bold text-white group-hover/card:text-brand-primary transition-colors flex items-center gap-2">
                       <span className="h-2.5 w-2.5 rounded-full bg-brand-primary" />
-                      {group.category} Systems
+                      {group.category} Tech(s)
                     </h2>
                   </div>
 

@@ -83,7 +83,7 @@ export const MajorProjectDetail = () => {
           <FadeIn direction="up">
             <div className="flex flex-wrap gap-2 mb-3">
               <span className="text-xs font-mono font-bold tracking-widest text-brand-primary uppercase bg-brand-primary/5 border border-brand-primary/10 px-3 py-1 rounded">
-                System Release Specs
+                Tags
               </span>
               {project.tags.map((tag, tagIdx) => (
                 <span
@@ -112,7 +112,7 @@ export const MajorProjectDetail = () => {
                     referrerPolicy="no-referrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-primary text-black hover:bg-brand-primary/95 transition-all duration-300"
                   >
-                    <ExternalLink className="w-4 h-4" /> Live Build &amp; Source
+                    <ExternalLink className="w-4 h-4" /> Source Code
                   </a>
                 )}
               </div>
