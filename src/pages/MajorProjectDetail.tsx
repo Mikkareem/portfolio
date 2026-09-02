@@ -144,7 +144,7 @@ export const MajorProjectDetail = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </AnimatePresence>
 

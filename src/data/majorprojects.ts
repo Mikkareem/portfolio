@@ -6,7 +6,8 @@ import sudokuMD from './markdowns/majorprojects/sudoku.md?raw';
 import memecutMD from './markdowns/majorprojects/memecut.md?raw';
 import apiclientkMD from './markdowns/majorprojects/apiclientk.md?raw';
 import rubikscubeMD from './markdowns/majorprojects/rubikscube.md?raw';
-import duberdolaMD from './markdowns/majorprojects/duberdola.md?raw';
+import chesskMD from './markdowns/majorprojects/chessk.md?raw';
+//import duberdolaMD from './markdowns/majorprojects/duberdola.md?raw';
 
 export const majorProjectsData: MajorProject[] = [
   {
@@ -16,9 +17,10 @@ export const majorProjectsData: MajorProject[] = [
     type: 'major',
     description: 'A cloud-native online coding judge platform inspired by LeetCode, featuring secure containerized code execution, microservices, Kubernetes, and modern React frontend technologies.',
     overview: codehornMD,
-    thumbnailImage: '/images/projects/thumbnails/Thumbnail_Codehorn.png',
+    // thumbnailImage: '/images/projects/thumbnails/Thumbnail_Codehorn.png',
+    thumbnailImage: 'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/Codehorn_Feature_Graphic_Dark.png',
     platforms: ['web', 'backend'],
-    source: 'https://github.com/Mikkareem/cloud-messenger',
+    source: 'https://github.com/techullurgy/Codehorn',
     technologies: [
       'Spring Boot w/Kotlin',
       'Spring Webflux',
@@ -33,8 +35,24 @@ export const majorProjectsData: MajorProject[] = [
       { color: ['#10b981'], label: 'Leetcode Clone' }
     ],
     screenshots: [
-      'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=600',
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600'
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/Codehorn_Feature_Graphic_Light.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_1.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_1.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_2.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_2.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_3.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_3.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_4.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_4.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_5.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_5.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_6.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_6.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_dark_7.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn_light_7.png'
+    ],
+    videos: [
+      'https://storage.googleapis.com/techullurgy-media/app-demos/codehorn/codehorn-demo-recording-dark.mp4'
     ]
   },
   {
@@ -45,8 +63,8 @@ export const majorProjectsData: MajorProject[] = [
     description: 'A cross-platform movie ticket booking application inspired by BookMyShow, featuring interactive seat selection, Stripe payments, and a production-ready cloud-native backend.',
     overview: notemyshowMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_NoteMyShow.png',
-    platforms: ['web', 'android', 'ios'],
-    source: 'https://github.com/Mikkareem/payflow-banking',
+    platforms: ['backend', 'android', 'ios'],
+    source: 'https://github.com/techullurgy/NoteMyShow',
     technologies: [
       'Spring Boot w/Kotlin',
       'Spring Security',
@@ -73,9 +91,10 @@ export const majorProjectsData: MajorProject[] = [
     type: 'major',
     description: 'A cloud-native WhatsApp-inspired messaging platform with real-time chats, media sharing, communities, status updates, and a scalable Kotlin microservices backend.',
     overview: howzappMD,
-    thumbnailImage: '/images/projects/thumbnails/Thumbnail_Howzapp.png',
+    // thumbnailImage: '/images/projects/thumbnails/Thumbnail_Howzapp.png',
+    thumbnailImage: 'https://storage.googleapis.com/techullurgy-media/app-demos/howzapp/Howzapp_Feature_Graphic.png',
     platforms: ['backend', 'android', 'ios', 'desktop'],
-    source: 'https://github.com/Mikkareem/fitpulse-kmp',
+    source: 'https://github.com/techullurgy/Howzapp',
     technologies: [
       'Kotlin Multiplatform',
       'Compose Multiplatform',
@@ -89,7 +108,10 @@ export const majorProjectsData: MajorProject[] = [
       { color: ['#ef4444', '#f43f5e'], label: 'Social Media' },
       { color: ['#6366f1'], label: 'Whatsapp Clone' }
     ],
-    screenshots: []
+    screenshots: [
+      'https://storage.googleapis.com/techullurgy-media/app-demos/howzapp/howzapp_dark_1.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/howzapp/howzapp_light_1.png',
+    ]
   },
   {
     id: 'memecut',
@@ -100,7 +122,7 @@ export const majorProjectsData: MajorProject[] = [
     overview: memecutMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_MemeCut.png',
     platforms: ['android', 'ios'],
-    source: 'https://github.com/Mikkareem/navigation-lab',
+    source: 'https://github.com/techullurgy/MemeCut',
     technologies: [
       'Compose Multiplatform',
       'Navigation 3',
@@ -113,15 +135,41 @@ export const majorProjectsData: MajorProject[] = [
     screenshots: []
   },
   {
-    id: 'apiclientk',
-    name: 'ApiClientK',
-    slug: 'apiclientk',
+    id: 'chessk',
+    name: 'ChessK',
+    slug: 'chessk',
+    type: 'major',
+    description: 'A cross-platform Online Real time Room based Chess game built with Kotlin Multiplatform and Compose Multiplatform, featuring an interactive gameplay experience',
+    overview: chesskMD,
+    thumbnailImage: 'https://storage.googleapis.com/techullurgy-media/app-demos/chessk/Chessk_Feature_Graphic.png',
+    platforms: ['android', 'ios', 'desktop'],
+    source: 'https://github.com/techullurgy/ChessKApp',
+    technologies: [
+      'Spring GraphQL',
+      'Spring Data JDBC',
+      'Docker',
+      'KoTest'
+    ],
+    tags: [
+      { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Game' },
+      { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Solver' },
+    ],
+    screenshots: [
+      'https://storage.googleapis.com/techullurgy-media/app-demos/chessk/Chessk_home.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/chessk/Chessk_1.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/chessk/Chessk_2.png',
+    ]
+  },
+  {
+    id: 'dosthman',
+    name: 'DosthMan',
+    slug: 'dosthman',
     type: 'major',
     description: "A modern cross-platform REST API client inspired by Postman, featuring HTTP request testing, a custom JSON viewer, and responsive developer-focused UI.",
     overview: apiclientkMD,
     thumbnailImage: '/images/projects/thumbnails/Thumbnail_ApiClientK.png',
     platforms: ['android', 'ios', 'desktop'],
-    source: 'https://github.com/Mikkareem/graphql-core',
+    source: 'https://github.com/techullurgy/DosthMan',
     technologies: [
       'Spring GraphQL',
       'Spring Data JDBC',
@@ -142,9 +190,9 @@ export const majorProjectsData: MajorProject[] = [
     type: 'major',
     description: 'A cross-platform Sudoku game and solver built with Kotlin Multiplatform and Compose Multiplatform, featuring an interactive gameplay experience and an intelligent solving engine.',
     overview: sudokuMD,
-    thumbnailImage: '/images/projects/thumbnails/Thumbnail_Sudoku.png',
+    thumbnailImage: 'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/Sudoku_Feature_Graphic.png',
     platforms: ['android', 'ios', 'desktop'],
-    source: 'https://github.com/Mikkareem/graphql-core',
+    source: 'https://github.com/techullurgy/SudokuApp',
     technologies: [
       'Spring GraphQL',
       'Spring Data JDBC',
@@ -155,7 +203,14 @@ export const majorProjectsData: MajorProject[] = [
       { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Game' },
       { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Solver' },
     ],
-    screenshots: []
+    screenshots: [
+      'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/sudoku_1.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/sudoku_2.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/sudoku_3.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/sudoku_4.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/sudoku_5.png',
+      'https://storage.googleapis.com/techullurgy-media/app-demos/sudokuapp/sudoku_6.png',
+    ]
   },
   {
     id: 'rubikscube',
@@ -164,9 +219,9 @@ export const majorProjectsData: MajorProject[] = [
     type: 'major',
     description: "A native Android 3D Rubik's Cube simulator powered by a custom OpenGL ES rendering engine with smooth animations and interactive controls.",
     overview: rubikscubeMD,
-    thumbnailImage: '/images/projects/thumbnails/Gemini_Generated_Image_Codehorn_Thumbnail.png',
+    thumbnailImage: 'https://storage.googleapis.com/techullurgy-media/app-demos/rubikscube3d/RubiksCube_Feature_Graphic.png',
     platforms: ['android', 'ios', 'desktop'],
-    source: 'https://github.com/Mikkareem/graphql-core',
+    source: 'https://github.com/techullurgy/RubiksCube3D',
     technologies: [
       'Spring GraphQL',
       'Spring Data JDBC',
@@ -177,28 +232,31 @@ export const majorProjectsData: MajorProject[] = [
       { color: ['#ef4444', '#f43f5e'], label: 'OpenGL ES' },
       { color: ['#ef4444', '#f43f5e'], label: '3D Game' }
     ],
-    screenshots: []
+    screenshots: [],
+    videos: [
+      'https://storage.googleapis.com/techullurgy-media/app-demos/rubikscube3d/rubikscube_1.mp4'
+    ]
   },
-  {
-    id: 'duberdola',
-    name: 'DuberDola',
-    slug: 'duberdola',
-    type: 'major',
-    description: 'A cross-platform ride-booking application inspired by Uber and Ola, featuring native Google Maps integration and a responsive Compose Multiplatform interface.',
-    overview: duberdolaMD,
-    thumbnailImage: '/images/projects/thumbnails/Gemini_Generated_Image_Codehorn_Thumbnail.png',
-    platforms: ['android', 'ios'],
-    source: 'https://github.com/Mikkareem/graphql-core',
-    technologies: [
-      'Spring GraphQL',
-      'Spring Data JDBC',
-      'Docker',
-      'KoTest'
-    ],
-    tags: [
-      { color: ['#ef4444', '#f43f5e'], label: 'Google Maps' },
-      { color: ['#ef4444', '#f43f5e'], label: 'Uber/Ola Clone' }
-    ],
-    screenshots: []
-  }
+  // {
+  //   id: 'duberdola',
+  //   name: 'DuberDola',
+  //   slug: 'duberdola',
+  //   type: 'major',
+  //   description: 'A cross-platform ride-booking application inspired by Uber and Ola, featuring native Google Maps integration and a responsive Compose Multiplatform interface.',
+  //   overview: duberdolaMD,
+  //   thumbnailImage: '/images/projects/thumbnails/Gemini_Generated_Image_Codehorn_Thumbnail.png',
+  //   platforms: ['android', 'ios'],
+  //   source: 'https://github.com/Mikkareem/graphql-core',
+  //   technologies: [
+  //     'Spring GraphQL',
+  //     'Spring Data JDBC',
+  //     'Docker',
+  //     'KoTest'
+  //   ],
+  //   tags: [
+  //     { color: ['#ef4444', '#f43f5e'], label: 'Google Maps' },
+  //     { color: ['#ef4444', '#f43f5e'], label: 'Uber/Ola Clone' }
+  //   ],
+  //   screenshots: []
+  // }
 ];

@@ -25,7 +25,7 @@ export interface Skill {
 }
 
 export interface SkillGroup {
-  category: 'Frontend' | 'Backend' | 'DevOps' | 'Mobile';
+  category: 'Frontend' | 'Backend' | 'DevOps' | 'Mobile' | 'Cloud' | 'Testing' | 'Spring';
   skills: Skill[];
 }
 

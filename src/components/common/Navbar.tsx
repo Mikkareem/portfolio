@@ -91,14 +91,14 @@ export const Navbar = () => {
             })}
 
             {/* Resume button/CTA */}
-            <a
+            {/* <a
               id="nav-cta-resume"
               href="/contact"
               className="ml-4 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-black bg-brand-primary hover:bg-brand-primary/95 font-sans rounded-full transition-transform active:scale-95 duration-200"
             >
               Contact
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
+            </a> */}
           </div>
 
           {/* Mobile Hamburguer */}

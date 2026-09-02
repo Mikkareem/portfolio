@@ -61,6 +61,12 @@ export const Skills = () => {
                             return 'from-orange-500/25 via-amber-500/15 to-red-500/25 hover:from-orange-500/40 hover:to-red-500/40 border-orange-400/20 hover:border-orange-400/50 shadow-orange-500/10';
                           case 'Mobile':
                             return 'from-indigo-500/25 via-violet-500/15 to-fuchsia-500/25 hover:from-indigo-500/40 hover:to-fuchsia-500/40 border-indigo-400/20 hover:border-indigo-400/50 shadow-indigo-500/10';
+                          case 'Cloud':
+                            return 'from-sky-500/25 via-cyan-500/15 to-blue-500/25 hover:from-sky-500/40 hover:to-blue-500/40 border-sky-400/20 hover:border-blue-400/50 shadow-sky-500/10';
+                          case 'Testing':
+                            return 'from-yellow-500/25 via-amber-500/15 to-orange-500/25 hover:from-yellow-500/40 hover:to-orange-500/40 border-yellow-400/20 hover:border-yellow-400/50 shadow-yellow-500/10';
+                          case 'Spring':
+                            return 'from-green-500/25 via-emerald-500/15 to-lime-500/25 hover:from-green-500/40 hover:to-lime-500/40 border-green-400/20 hover:border-green-400/50 shadow-green-500/10';
                           default:
                             return 'from-white/[0.08] to-white/[0.02] hover:from-brand-primary/20 hover:to-brand-accent/10';
                         }
