@@ -368,7 +368,13 @@ export const miniProjectsData: MiniProject[] = [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
     ],
-    screenshots: []
+    screenshots: [],
+    videos: [
+      "https://gist.github.com/user-attachments/assets/05d966dd-2ae6-480e-bbd6-5026e952c5db"
+    ],
+    thumbnail: {
+      video: "https://gist.github.com/user-attachments/assets/05d966dd-2ae6-480e-bbd6-5026e952c5db"
+    }
   },
   {
     id: 'chat-app-ui-with-typing-indications',
@@ -482,15 +488,18 @@ export const miniProjectsData: MiniProject[] = [
     name: 'Kanban Board UI',
     slug: 'kanban-board-ui',
     type: 'mini',
-    description: 'Description',
+    description: 'A custom Kanban Board UI built with Jetpack Compose, featuring long-press drag-and-drop interactions across horizontally paged Kanban groups, showcasing gesture handling, animated page navigation, custom drag rendering, and advanced Compose state management.',
     overview: kanbanboardviewMD,
-    platforms: ['android', 'ios'],
-    source: 'https://gist.github.com/Mikkareem/',
+    platforms: ['android'],
+    source: 'https://github.com/Mikkareem/tasks-kanban-app',
     technologies: [],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
     ],
-    screenshots: []
+    screenshots: [],
+    thumbnail: {
+      video: 'https://github.com/user-attachments/assets/6dde4d92-5175-420a-b989-08b423de4165'
+    }
   }
 ];

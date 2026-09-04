@@ -19,6 +19,7 @@ export const Projects = () => {
     if (platform === 'web') return <Monitor className="w-4 h-4" />;
     if (platform === 'android' || platform === 'ios') return <Smartphone className="w-4 h-4" />;
     if (platform === 'backend') return <Cpu className="w-4 h-4" />;
+    if (platform === 'desktop') return <Cpu className="w-4 h-4" />;
     return <Layers className="w-4 h-4" />;
   };
 
@@ -53,7 +54,7 @@ export const Projects = () => {
           <div className="flex-shrink-0">
             <FadeIn direction="up" delay={0.2}>
               <div className="flex items-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-xl max-w-full overflow-x-auto no-scrollbar whitespace-nowrap">
-                {(['all', 'web', 'android', 'ios', 'backend'] as const).map(tag => (
+                {(['all', 'web', 'android', 'ios', 'desktop', 'backend'] as const).map(tag => (
                   <button
                     key={tag}
                     id={`projects-filter-${tag}`}
