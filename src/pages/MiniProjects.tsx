@@ -3,6 +3,7 @@ import { portfolioRepository } from '../data/repositories/portfolioRepository';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/animations/FadeIn';
 import { PlatformType } from '../types';
 import { MiniProjectCard } from '../components/common/MiniProjectCard';
+import { EmptyState } from '../components/common/EmptyState';
 import { Monitor, Smartphone, Cpu, Layers } from 'lucide-react';
 
 export const MiniProjects = () => {
@@ -72,15 +73,24 @@ export const MiniProjects = () => {
 
         {/* Mini Projects & UI Labs Grid */}
         <div className="space-y-10">
-          <StaggerContainer key={filter} staggerBy={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredMiniProjects.map((project, idx) => (
-                <StaggerItem key={project.id}>
-                  <MiniProjectCard project={project} idx={idx} />
-                </StaggerItem>
-              ))}
-            </div>
-          </StaggerContainer>
+          {filteredMiniProjects.length > 0 ? (
+            <StaggerContainer key={filter} staggerBy={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {filteredMiniProjects.map((project, idx) => (
+                  <StaggerItem key={project.id}>
+                    <MiniProjectCard project={project} idx={idx} />
+                  </StaggerItem>
+                ))}
+              </div>
+            </StaggerContainer>
+          ) : (
+            <EmptyState
+              title="No data"
+              description={`No mini projects found under the "${filter}" platform category.`}
+              onReset={() => setFilter('all')}
+              resetLabel="Show All Projects"
+            />
+          )}
         </div>
 
       </div>

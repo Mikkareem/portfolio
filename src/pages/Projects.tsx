@@ -3,6 +3,7 @@ import { portfolioRepository } from '../data/repositories/portfolioRepository';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/animations/FadeIn';
 import { PlatformType } from '../types';
 import { MajorProjectCard } from '../components/common/MajorProjectCard';
+import { EmptyState } from '../components/common/EmptyState';
 import { Monitor, Smartphone, Cpu, Layers } from 'lucide-react';
 
 export const Projects = () => {
@@ -81,15 +82,24 @@ export const Projects = () => {
             </h2>
           </FadeIn>
 
-          <StaggerContainer key={filter}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {filteredMajorProjects.map((project, idx) => (
-                <StaggerItem key={project.id}>
-                  <MajorProjectCard project={project} idx={idx} />
-                </StaggerItem>
-              ))}
-            </div>
-          </StaggerContainer>
+          {filteredMajorProjects.length > 0 ? (
+            <StaggerContainer key={filter}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {filteredMajorProjects.map((project, idx) => (
+                  <StaggerItem key={project.id}>
+                    <MajorProjectCard project={project} idx={idx} />
+                  </StaggerItem>
+                ))}
+              </div>
+            </StaggerContainer>
+          ) : (
+            <EmptyState
+              title="No data"
+              description={`No major projects found under the "${filter}" platform category.`}
+              onReset={() => setFilter('all')}
+              resetLabel="Show All Projects"
+            />
+          )}
         </div>
 
       </div>
