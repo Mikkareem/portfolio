@@ -178,7 +178,7 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     category: 'Backend',
     boxColor: "#150578",
     textColor: '#fff',
-    ropeColor: '#150578',
+    ropeColor: '#fe5d26',
     speedMultiplier: getRandom(),
     phaseOffset: getRandom(),
     skills: [
@@ -271,7 +271,7 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
 
   {
     category: 'Spring',
-    boxColor: "#150578",
+    boxColor: "#9e0059",
     textColor: '#fff',
     ropeColor: '#150578',
     speedMultiplier: getRandom(),
@@ -449,7 +449,7 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
 
   {
     category: 'Web',
-    boxColor: "#150578",
+    boxColor: "#02c3bd",
     textColor: '#fff',
     ropeColor: '#150578',
     speedMultiplier: getRandom(),
