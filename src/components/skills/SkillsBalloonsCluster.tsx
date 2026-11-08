@@ -63,7 +63,7 @@ function SkillBalloonsCluster({ config }: { config: SkillBalloonConfig }) {
 export default function SkillBalloonsVisualizer() {
   return (
     <Physics gravity={[0, -9.81, 0]}>
-      <SkillBalloonsCluster config={SKILLS_BALLOON_CONFIGS[0]} />
+      <SkillBalloonsCluster config={SKILLS_BALLOON_CONFIGS[3]} />
     </Physics>
   );
 }
