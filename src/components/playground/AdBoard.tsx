@@ -1,8 +1,32 @@
-import { useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { BufferGeometryUtils } from "three/examples/jsm/Addons.js";
 
-const AdBoard = ({ children }: any) => {
+const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
+  const contentRef = useRef<any>(null);
+  const [contentSize, setContentSize] = useState({ width: 0, height: 0 });
+
+  useFrame(() => {
+    if (contentRef.current) {
+      // 1. Force update matrices to ensure accurate scaling/positions
+      contentRef.current.updateMatrixWorld(true, true);
+
+      // 2. Calculate bounding box of all children at any level
+      const box = new THREE.Box3().setFromObject(contentRef.current);
+      const boxSize = new THREE.Vector3();
+      box.getSize(boxSize);
+
+      // 3. Set dimensions with optional padding
+      if (boxSize.x != contentSize.width || boxSize.y != contentSize.height) {
+        setContentSize({
+          width: boxSize.x,
+          height: boxSize.y,
+        });
+      }
+    }
+  });
+
   const mesh = useMemo(() => {
     const box = new THREE.BoxGeometry(1, 1, 0.2).toNonIndexed();
     box.translate(0, 0, -0.03);
@@ -64,9 +88,22 @@ const AdBoard = ({ children }: any) => {
   }, []);
 
   return (
-    <group scale={[10, 7, 3]}>
-      <primitive object={mesh} />
-      {children}
+    <group>
+      <group
+        scale={[
+          contentSize.width + contentSize.width * scaleFactorX,
+          contentSize.height + contentSize.height * scaleFactorY,
+          1,
+        ]}
+      >
+        <primitive object={mesh} />
+      </group>
+      <group
+        position={[-contentSize.width / 2.0, contentSize.height / 2.0, 0.1]}
+        ref={contentRef}
+      >
+        {children}
+      </group>
     </group>
   );
 };

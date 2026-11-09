@@ -21,20 +21,22 @@ const VLightMaterial = {
     varying vec2 vUv;
 
     void main() {
-      // Normalize height factor: 0.0 at top (y = 2.0), 1.0 at bottom (y = 0.0)
+      // vUv.y goes from 0.0 at one end to 1.0 at the other.
+      // Adjust distance falloff along the length of the beam.
       float distanceFactor = 1.0 - vUv.y;
       distanceFactor = clamp(distanceFactor, 0.0, 1.0);
-      distanceFactor = pow(distanceFactor, 1.2); // Controls light reach curve
+      distanceFactor = pow(distanceFactor, 3.2); 
 
-      // 2. Horizontal edge falloff: Brightest at center (vUv.x = 0.5), fading at edges (0.0 or 1.0)
-      float edgeFactor = 1.0 - abs(vUv.x - 0.5) * 2.0;
-      edgeFactor = pow(edgeFactor, 0.78); // Softens the beam borders
+      // For a cylinder/cone geometry, vUv.x wraps around the circumference (0.0 to 1.0).
+      // We can create a smooth radial falloff from the center of the beam or keep it uniform.
+      // Here we create a subtle edge softness around the beam's cross-section if desired,
+      // or let the geometry shape handle the circular cross-section naturally.
+      float edgeFactor = 1.0; 
 
-      // Combine factors
       float totalLight = distanceFactor * edgeFactor * uIntensity;
 
       vec3 finalColor = uColor * totalLight;
-      float alpha = distanceFactor * edgeFactor * 0.98; // Fade alpha smoothly at edges/tip
+      float alpha = distanceFactor * 0.98;
 
       gl_FragColor = vec4(finalColor, alpha);
     }
@@ -44,40 +46,12 @@ const VLightMaterial = {
   blending: THREE.MultiplyBlending, // Makes it look like glowing light
 };
 
-export const LightMesh = ({ color }: any) => {
+export const PointLightMesh = ({ color }: any) => {
   const materialRef = useRef<any>(null);
 
-  // Create a triangular V-shaped wedge for the torch beam
   const beamGeometry = useMemo(() => {
-    const geometry = new THREE.BufferGeometry();
-
-    // Triangle vertices forming a V-shape (Point at bottom [0,0,0], wide at top)
-    const vertices = new Float32Array([
-      0.0,
-      0.0,
-      0.0, // Vertex 0: Bottom tip
-      -3.5,
-      6.0,
-      0.0, // Vertex 1: Top left
-      3.5,
-      6.0,
-      0.0, // Vertex 2: Top right
-    ]);
-
-    // Explicit UV mapping corresponding to the vertices
-    const uvs = new Float32Array([
-      0.5,
-      0.0, // Bottom tip (Center X, Bottom Y)
-      0.0,
-      1.0, // Top left (Left X, Top Y)
-      1.0,
-      1.0, // Top right (Right X, Top Y)
-    ]);
-
-    geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-    geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
-
-    return geometry;
+    const geo = new THREE.CylinderGeometry(2, 0.2, 7, 20, 20, true);
+    return geo;
   }, []);
 
   // Update color uniform dynamically if prop changes
