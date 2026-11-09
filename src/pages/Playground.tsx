@@ -1,11 +1,12 @@
-import { ORBITS } from "../components/home/skill-overview-config";
-import { SkillsDescription } from "../components/home/SkillsDescription";
+import { AchievementCard } from "../components/playground/AchievementCard";
 
 export const Playground = (props: any) => {
   return (
     <group {...props} dispose={null}>
+      <axesHelper args={[10]} />
+
       {/* <SkillOverview /> */}
-      <SkillsDescription skill={ORBITS[0]} />
+      {/* <SkillsDescription skill={ORBITS[0]} /> */}
       {/* <TSLNode /> */}
       {/* <GlowAppIcon /> */}
       {/* <LightMesh color={[1.0, 0.26753, 0.13]} /> */}
@@ -26,7 +27,7 @@ export const Playground = (props: any) => {
 
       {/* <Background /> */}
 
-      <axesHelper args={[10]} />
+      <AchievementCard color={"red"} title={"Projects"} achievement={"32+"} />
     </group>
   );
 };

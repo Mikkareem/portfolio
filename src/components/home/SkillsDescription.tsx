@@ -1,16 +1,19 @@
 import { Text } from "@react-three/drei";
 import AdBoard from "../playground/AdBoard";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export const SkillsDescription = ({ skill }: any) => {
   return (
     <group>
-      <AdBoard scaleFactorX={0} scaleFactorY={0}>
+      <AdBoard scaleFactorX={0.06} scaleFactorY={0.086}>
         <Card skill={skill} />
       </AdBoard>
     </group>
   );
 };
+
+const GAP = 0.45; // Vertical spacing between title and description
+const PADDING = 0.2; // Padding around the text (set to 0 for exact tight fit)
 
 const Card = ({ skill }: any) => {
   const titleTextRef = useRef<any>(null);
@@ -19,15 +22,23 @@ const Card = ({ skill }: any) => {
   const [titleTextSize, setTitleTextSize] = useState({ w: 0, h: 0 });
   const [descTextSize, setDescTextSize] = useState({ w: 0, h: 0 });
 
-  const cardWidth = Math.max(titleTextSize.w, descTextSize.w);
-  const cardHeight = titleTextSize.h + descTextSize.h;
+  const hasDesc = descTextSize.h > 0 && descTextSize.w > 0;
+  const gap = hasDesc && titleTextSize.h > 0 ? GAP : 0;
+
+  const contentWidth = Math.max(titleTextSize.w, descTextSize.w);
+  const contentHeight = titleTextSize.h + gap + descTextSize.h;
+
+  const cardWidth = contentWidth + PADDING * 2;
+  const cardHeight = contentHeight + PADDING * 2;
 
   return (
     <group>
-      <mesh position={[cardWidth / 2.0, -cardHeight / 2.0, -0.001]}>
-        <planeGeometry args={[cardWidth, cardHeight]} />
-        <meshBasicMaterial color={"red"} />
-      </mesh>
+      {cardWidth > 0 && cardHeight > 0 && (
+        <mesh position={[cardWidth / 2.0, -cardHeight / 2.0, -0.001]}>
+          <planeGeometry args={[cardWidth, cardHeight]} />
+          <meshBasicMaterial color={"red"} />
+        </mesh>
+      )}
 
       <Text
         ref={titleTextRef}
@@ -36,14 +47,12 @@ const Card = ({ skill }: any) => {
         color="#fff"
         anchorX={"left"}
         anchorY={"top"}
+        position={[PADDING, -PADDING, 0]}
         onSync={(mesh) => {
           const bounds = mesh.textRenderInfo?.blockBounds;
           if (bounds) {
-            const measuredWidth = Math.abs(bounds[2] - bounds[0]); // maxY - minY
-            const measuredHeight = Math.abs(bounds[3] - bounds[1]); // maxY - minY
-
-            console.log("Bounds", bounds);
-            console.log("Measured", measuredWidth, measuredHeight);
+            const measuredWidth = Math.abs(bounds[2] - bounds[0]);
+            const measuredHeight = Math.abs(bounds[3] - bounds[1]);
             setTitleTextSize({ w: measuredWidth, h: measuredHeight });
           }
         }}
@@ -59,15 +68,12 @@ const Card = ({ skill }: any) => {
         maxWidth={5}
         anchorX={"left"}
         anchorY={"top"}
-        position={[0, titleTextSize.h, 0]}
+        position={[PADDING, -PADDING - titleTextSize.h - gap, 0]}
         onSync={(mesh) => {
           const bounds = mesh.textRenderInfo?.blockBounds;
           if (bounds) {
-            const measuredWidth = Math.abs(bounds[2] - bounds[0]); // maxY - minY
-            const measuredHeight = Math.abs(bounds[3] - bounds[1]); // maxY - minY
-
-            console.log("Desc Bounds", bounds);
-            console.log("Desc Measured", measuredWidth, measuredHeight);
+            const measuredWidth = Math.abs(bounds[2] - bounds[0]);
+            const measuredHeight = Math.abs(bounds[3] - bounds[1]);
             setDescTextSize({ w: measuredWidth, h: measuredHeight });
           }
         }}

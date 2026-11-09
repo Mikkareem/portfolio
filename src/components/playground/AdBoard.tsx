@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { BufferGeometryUtils } from "three/examples/jsm/Addons.js";
 
@@ -29,7 +29,7 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
 
   const mesh = useMemo(() => {
     const box = new THREE.BoxGeometry(1, 1, 0.2).toNonIndexed();
-    box.translate(0, 0, -0.03);
+    box.translate(0, 0, -0.23);
 
     const monitorShape = new THREE.Shape();
     const w = 1,
@@ -53,7 +53,7 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
 
     // Extrusion settings to give the frame depth and smooth bevel edges
     const extrudeSettings = {
-      depth: 0.12,
+      depth: 0.32,
       bevelEnabled: true,
       bevelSegments: 10,
       steps: 10,
@@ -99,7 +99,7 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
         <primitive object={mesh} />
       </group>
       <group
-        position={[-contentSize.width / 2.0, contentSize.height / 2.0, 0.1]}
+        position={[-contentSize.width / 2.0, contentSize.height / 2.0, 0.001]}
         ref={contentRef}
       >
         {children}
