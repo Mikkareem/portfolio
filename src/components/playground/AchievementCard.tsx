@@ -2,6 +2,7 @@ import { extend, type ThreeElements } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { RoundedBoxGeometry } from "three/examples/jsm/Addons.js";
 import { Text } from "@react-three/drei";
+import { Fonts } from "../../presentation/Core";
 
 extend({ RoundedBoxGeometry });
 
@@ -54,7 +55,7 @@ export function AchievementCard({ title, achievement, color }: any) {
       <group position={[-cardWidth / 2.0, cardHeight / 2.0, 0]}>
         <Text
           ref={titleTextRef}
-          font="/fonts/GoogleSans-Regular-Variable.ttf"
+          font={Fonts.bodyRegular.name}
           fontSize={0.5}
           color="#fff"
           anchorX={"left"}
@@ -75,7 +76,7 @@ export function AchievementCard({ title, achievement, color }: any) {
 
         <Text
           ref={achievementTextRef}
-          font="/fonts/GoogleSans-Regular-Variable.ttf"
+          font={Fonts.bodyRegular.name}
           fontSize={1.3}
           color="#fff"
           maxWidth={5}

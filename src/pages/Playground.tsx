@@ -1,12 +1,12 @@
-import { AchievementCard } from "../components/playground/AchievementCard";
+import { SkillOverview } from "../components/home/SkillOverview";
 
 export const Playground = (props: any) => {
   return (
     <group {...props} dispose={null}>
-      <axesHelper args={[10]} />
+      {/* <axesHelper args={[10]} /> */}
 
-      {/* <SkillOverview /> */}
-      {/* <SkillsDescription skill={ORBITS[0]} /> */}
+      <SkillOverview />
+      {/* <SkillsDescription skill={ORBITS[1]} /> */}
       {/* <TSLNode /> */}
       {/* <GlowAppIcon /> */}
       {/* <LightMesh color={[1.0, 0.26753, 0.13]} /> */}
@@ -19,15 +19,17 @@ export const Playground = (props: any) => {
 
       {/* <Routing /> */}
 
-      {/* <SkillCard
-        skillText={"Kotlin\nMultiplatform"}
-        textColor={"#000"}
-        boxColor={"#45fe3f"}
-      /> */}
+      {/* <group scale={2}>
+        <FlowRowChips
+          rowGap={0.12}
+          colGap={0.15}
+          listOfStrings={["Red Bus", "Book My Show", "Google", "Helverica"]}
+        />
+      </group> */}
 
       {/* <Background /> */}
 
-      <AchievementCard color={"red"} title={"Projects"} achievement={"32+"} />
+      {/* <AchievementCard color={"red"} title={"Projects"} achievement={"32+"} /> */}
     </group>
   );
 };

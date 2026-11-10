@@ -3,7 +3,13 @@ import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { BufferGeometryUtils } from "three/examples/jsm/Addons.js";
 
-const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
+const AdBoard = ({
+  children,
+  scaleFactorX,
+  scaleFactorY,
+  color,
+  isTranslationRequired,
+}: any) => {
   const contentRef = useRef<any>(null);
   const [contentSize, setContentSize] = useState({ width: 0, height: 0 });
 
@@ -12,13 +18,28 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
       // 1. Force update matrices to ensure accurate scaling/positions
       contentRef.current.updateMatrixWorld(true, true);
 
-      // 2. Calculate bounding box of all children at any level
-      const box = new THREE.Box3().setFromObject(contentRef.current);
-      const boxSize = new THREE.Vector3();
-      box.getSize(boxSize);
+      // 2. Calculate bounding box relative to contentRef (immune to any rotation/scale on any axis)
+      const invMat = contentRef.current.matrixWorld.clone().invert();
+      const localBox = new THREE.Box3();
 
-      // 3. Set dimensions with optional padding
-      if (boxSize.x != contentSize.width || boxSize.y != contentSize.height) {
+      contentRef.current.traverse((child: any) => {
+        if (child.isMesh && child.geometry) {
+          if (!child.geometry.boundingBox) child.geometry.computeBoundingBox();
+          localBox.union(
+            child.geometry.boundingBox
+              .clone()
+              .applyMatrix4(child.matrixWorld.clone().premultiply(invMat))
+          );
+        }
+      });
+
+      const boxSize = new THREE.Vector3();
+      localBox.getSize(boxSize);
+
+      if (
+        Math.abs(boxSize.x - contentSize.width) > 0.001 ||
+        Math.abs(boxSize.y - contentSize.height) > 0.001
+      ) {
         setContentSize({
           width: boxSize.x,
           height: boxSize.y,
@@ -53,7 +74,7 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
 
     // Extrusion settings to give the frame depth and smooth bevel edges
     const extrudeSettings = {
-      depth: 0.32,
+      depth: 1.32,
       bevelEnabled: true,
       bevelSegments: 10,
       steps: 10,
@@ -72,7 +93,7 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
 
     // 3. Material and Mesh
     const monitorMaterial = new THREE.MeshStandardMaterial({
-      color: 0xe4f63a,
+      color,
       roughness: 0.3,
       metalness: 0.8,
     });
@@ -99,7 +120,11 @@ const AdBoard = ({ children, scaleFactorX, scaleFactorY }: any) => {
         <primitive object={mesh} />
       </group>
       <group
-        position={[-contentSize.width / 2.0, contentSize.height / 2.0, 0.001]}
+        position={
+          isTranslationRequired
+            ? [-contentSize.width / 2.0, contentSize.height / 2.0, 0.001]
+            : [0, 0, 0.001]
+        }
         ref={contentRef}
       >
         {children}

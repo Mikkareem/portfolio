@@ -23,14 +23,19 @@ export const SkillOverview = (props: ComponentProps<"group">) => {
 
   return (
     <group {...props}>
-      <group position={[-3, 0, 0]} rotation={[TILT_X, 0, degToRad(-25)]}>
+      <group position={[-4, 0, 0]} rotation={[TILT_X, 0, degToRad(-25)]}>
         <SkillsOrbit
           groupRef={leftPanelGroupRef}
           itemRefs={leftPanelIconsRef}
         />
       </group>
 
-      <group position={[4, 0, 0]} ref={rightPanelRef}>
+      <group
+        position={[4, 0, 0]}
+        scale={1.3}
+        rotation-y={degToRad(-25)}
+        ref={rightPanelRef}
+      >
         <SkillsDescription skill={ORBITS[activeIndex]} />
       </group>
     </group>

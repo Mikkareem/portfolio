@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { Text } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { Fonts } from "../../presentation/Core";
 
 export const SimpleAboutCard = (props: any) => {
+  const viewport = useThree((t) => t.viewport);
+
   // Card dimensions (acting as max-width + padding bounds)
-  const padding = 0.5;
-  const maxWidth = 5 - 2 * padding;
+  const padding = 0.23;
+  const gap = 0.4;
+  const maxWidth = Math.min(viewport.width / 3, 10) - 2 * padding;
 
   const [titleSize, setTitleSize] = useState({ w: 0, h: 0 });
   const [paragraphSize, setParagraphSize] = useState({ w: 0, h: 0 });
 
   const cardWidth = 2 * padding + Math.max(titleSize.w, paragraphSize.w);
-  const cardHeight = 2 * padding + titleSize.h + paragraphSize.h;
+  const cardHeight = 2 * padding + titleSize.h + paragraphSize.h + gap;
 
   const [hovered, setHovered] = useState(false);
 
@@ -40,8 +45,9 @@ export const SimpleAboutCard = (props: any) => {
         <Text
           position={[0, 0, 0]}
           fontSize={0.4}
+          font={Fonts.bodyRegular.name}
           maxWidth={maxWidth}
-          color="#111827" // dark text for contrast
+          color={hovered ? "#111827" : "#ffffff"} // dark text for contrast
           anchorX="left"
           anchorY="top"
           onSync={(mesh) => {
@@ -60,10 +66,11 @@ export const SimpleAboutCard = (props: any) => {
 
         {/* Paragraph (replaces p text-2xl with multiline constraints) */}
         <Text
-          position={[0, -0.4, 0]} // Offset vertically below the title (simulating gap)
+          position={[0, -gap - 0.4, 0]} // Offset vertically below the title (simulating gap)
           fontSize={0.22}
+          font={Fonts.bodyRegular.name}
           maxWidth={maxWidth} // Keeps text within padding bounds
-          color="#1f2937"
+          color={hovered ? "#111827" : "#ffffff"}
           anchorX="left"
           anchorY="top"
           onSync={(mesh) => {

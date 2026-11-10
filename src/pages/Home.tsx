@@ -1,4 +1,3 @@
-import { useGSAP } from "@gsap/react";
 import { Box, useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
@@ -7,13 +6,15 @@ import { degToRad } from "three/src/math/MathUtils.js";
 import Hero3d from "../components/home/Hero3d";
 import { SimpleAboutCard } from "../components/home/SimpleAboutCard";
 import Background from "../components/playground/Background";
+import { useGSAP } from "@gsap/react";
+import { UI } from "../presentation/Core";
 
 const Home = () => {
   const camera = useThree((state) => state.camera);
   const viewport = useThree((state) => state.viewport);
   const { width: bgWidth, height: bgHeight } = viewport.getCurrentViewport(
     camera,
-    [0, 0, BG_DEPTH],
+    [0, 0, UI.BG_DEPTH],
   );
 
   const pageScrollRef = useRef<any>(null);
@@ -28,28 +29,28 @@ const Home = () => {
         <Background
           color={"green"}
           y={0 * bgHeight}
-          z={BG_DEPTH}
+          z={UI.BG_DEPTH}
           width={bgWidth}
           height={bgHeight}
         />
         <Background
           color={"red"}
           y={-1 * bgHeight}
-          z={BG_DEPTH}
+          z={UI.BG_DEPTH}
           width={bgWidth}
           height={bgHeight}
         />
         <Background
           color={"blue"}
           y={-2 * bgHeight}
-          z={BG_DEPTH}
+          z={UI.BG_DEPTH}
           width={bgWidth}
           height={bgHeight}
         />
         <Background
           color={"teal"}
           y={-3 * bgHeight}
-          z={BG_DEPTH}
+          z={UI.BG_DEPTH}
           width={bgWidth}
           height={bgHeight}
         />
@@ -86,7 +87,7 @@ function useHomeScrollAnimation({
   const { height: bgHeight } = viewport.getCurrentViewport(camera, [
     0,
     0,
-    BG_DEPTH,
+    UI.BG_DEPTH,
   ]);
 
   const animationTimeline = useRef(
@@ -147,6 +148,7 @@ function useHomeScrollAnimation({
   });
 
   useFrame(() => {
+    console.log("Offset", scroll.offset);
     if (animationTimeline.current) {
       animationTimeline.current.seek(
         scroll.offset * animationTimeline.current.duration(),
@@ -155,7 +157,5 @@ function useHomeScrollAnimation({
     }
   });
 }
-
-const BG_DEPTH = -100;
 
 export default Home;
