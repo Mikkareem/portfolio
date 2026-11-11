@@ -1,7 +1,7 @@
 import { OrbitControls, ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useScrollStore } from "../stores/ScrollStore";
-import Skills from "./skills";
+import { Playground } from "../pages/Playground";
 
 const Model = () => {
   const totalPages = useScrollStore((state) => state.totalPages);
@@ -18,9 +18,9 @@ const Model = () => {
         <directionalLight position={[15, 10, 20]} intensity={1.2} castShadow />
 
         <ScrollControls pages={totalPages} damping={0.2}>
-          {/* <Playground /> */}
+          <Playground />
           {/* <Home /> */}
-          <Skills />
+          {/* <Skills /> */}
         </ScrollControls>
 
         <OrbitControls makeDefault enableZoom={false} />

@@ -1,3 +1,4 @@
+import { ImageCard } from "../components/playground/ImageCard";
 import { Routing } from "../components/playground/Routing";
 
 export const Playground = (props: any) => {
@@ -17,7 +18,9 @@ export const Playground = (props: any) => {
 
       {/* <SkillBalloonVisualizer /> */}
 
-      <Routing />
+      {/* <Routing /> */}
+
+      <ImageCard />
 
       {/* <group scale={2}>
         <FlowRowChips
