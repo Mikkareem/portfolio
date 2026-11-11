@@ -25,12 +25,19 @@ export function useSkillBalloonsClusterSetup({
       if (!ref) return;
 
       const skill = config.skills[index];
-      const p = t * (0.6 + config.speedMultiplier) + (config.phaseOffset + (index * 0.3));
+      // Reduced blowing speed with randomized variation per balloon
+      const balloonSpeed = 0.25 + config.speedMultiplier * 0.2 + (Math.sin(index * 12.9898) * 0.5 + 0.5) * 0.15;
+      const p = t * balloonSpeed + (config.phaseOffset + index * 0.43);
+
+      // Reduced blowing force, randomized per balloon
+      const forceScaleX = 0.2 + (Math.cos(index * 4.31) * 0.5 + 0.5) * 0.12;
+      const forceScaleZ = 0.2 + (Math.sin(index * 7.19) * 0.5 + 0.5) * 0.12;
+      const forceScaleY = 0.08 + (Math.cos(index * 9.17) * 0.5 + 0.5) * 0.05;
 
       // Unique wind turbulence per balloon
-      const windX = Math.sin(p * 1.3) * 0.5 + Math.cos(p * 0.7) * 0.25;
-      const windZ = Math.cos(p * 1.1) * 0.5 + Math.sin(p * 0.8) * 0.25;
-      const bobY = Math.sin(p * 2.0) * 0.2;
+      const windX = (Math.sin(p * 1.2) * 0.7 + Math.cos(p * 0.6) * 0.3) * forceScaleX;
+      const windZ = (Math.cos(p * 1.0) * 0.7 + Math.sin(p * 0.7) * 0.3) * forceScaleZ;
+      const bobY = Math.sin(p * 1.4) * forceScaleY;
 
       const baseX = skill.basePos.x * viewport.width - viewport.width / 2.0;
       const baseY = skill.basePos.y * viewport.height;

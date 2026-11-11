@@ -14,7 +14,7 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
     <group
       position={[middle.x, middle.y, middle.z]}
       rotation-y={degToRad(-25)}
-      scale={0.8}
+      scale={[0.8, 0.8, 1]}
     >
       <AdBoard scaleFactorX={0.07} scaleFactorY={0} color={"#56ff34"}>
         <SimpleAboutCard scale={1.6} />

@@ -1,12 +1,16 @@
 import { useThree } from "@react-three/fiber";
-import { Physics, RigidBody } from "@react-three/rapier";
+import { RigidBody } from "@react-three/rapier";
 import { useRef } from "react";
 import { BalloonString } from "./BalloonString";
 import SkillCard from "./SkillCard";
-import { SKILLS_BALLOON_CONFIGS, type SkillBalloonConfig } from "./config";
+import { type SkillBalloonConfig } from "./config";
 import { useSkillBalloonsClusterSetup } from "./useSkillBalloonsClusterSetup";
 
-function SkillBalloonsCluster({ config }: { config: SkillBalloonConfig }) {
+export function SkillBalloonsCluster({
+  config,
+}: {
+  config: SkillBalloonConfig;
+}) {
   const anchorRef = useRef<any>(null);
   const balloonRefs = useRef<Array<any>>([]);
 
@@ -29,41 +33,57 @@ function SkillBalloonsCluster({ config }: { config: SkillBalloonConfig }) {
       </RigidBody>
 
       {/* Render all balloons and their corresponding strings */}
-      {config.skills.map((skill, index) => {
-        const balloonRef = useRef<any>(null);
-        return (
-          <group key={index}>
-            <RigidBody
-              ref={(el) => {
-                balloonRef.current = el;
-                balloonRefs.current[index] = el;
-              }}
-              type="kinematicPosition"
-              colliders={false}
-              position={skill.basePos}
-            >
-              <SkillCard
-                skillText={skill.name}
-                textColor={config.textColor}
-                boxColor={config.boxColor}
-              />
-            </RigidBody>
-            <BalloonString
-              anchorRef={anchorRef}
-              balloonRef={balloonRef}
-              color={config.ropeColor}
-            />
-          </group>
-        );
-      })}
+      {config.skills.map((skill, index) => (
+        <SkillBalloonItem
+          key={index}
+          skill={skill}
+          index={index}
+          config={config}
+          anchorRef={anchorRef}
+          balloonRefs={balloonRefs}
+        />
+      ))}
     </>
   );
 }
 
-export default function SkillBalloonsVisualizer() {
+function SkillBalloonItem({
+  skill,
+  index,
+  config,
+  anchorRef,
+  balloonRefs,
+}: {
+  skill: { name: string; basePos: any };
+  index: number;
+  config: SkillBalloonConfig;
+  anchorRef: any;
+  balloonRefs: React.MutableRefObject<any[]>;
+}) {
+  const balloonRef = useRef<any>(null);
+
   return (
-    <Physics gravity={[0, -9.81, 0]}>
-      <SkillBalloonsCluster config={SKILLS_BALLOON_CONFIGS[3]} />
-    </Physics>
+    <group>
+      <RigidBody
+        ref={(el) => {
+          balloonRef.current = el;
+          balloonRefs.current[index] = el;
+        }}
+        type="kinematicPosition"
+        colliders={false}
+        position={skill.basePos}
+      >
+        <SkillCard
+          skillText={skill.name}
+          textColor={config.textColor}
+          boxColor={config.boxColor}
+        />
+      </RigidBody>
+      <BalloonString
+        anchorRef={anchorRef}
+        balloonRef={balloonRef}
+        color={config.ropeColor}
+      />
+    </group>
   );
 }

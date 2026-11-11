@@ -15,14 +15,14 @@ export function HomeBackground({ ref }: { ref: RefObject<any> }) {
   return (
     <group ref={ref}>
       <Background
-        color={"green"}
+        color={"black"}
         y={0 * bgHeight}
         z={UI.BG_DEPTH}
         width={bgWidth}
         height={bgHeight}
       />
       <Background
-        color={"red"}
+        color={"black"}
         y={-1 * bgHeight}
         z={UI.BG_DEPTH}
         width={bgWidth}
@@ -31,6 +31,13 @@ export function HomeBackground({ ref }: { ref: RefObject<any> }) {
       <Background
         color={"black"}
         y={-2 * bgHeight}
+        z={UI.BG_DEPTH}
+        width={bgWidth}
+        height={bgHeight}
+      />
+      <Background
+        color={"black"}
+        y={-3 * bgHeight}
         z={UI.BG_DEPTH}
         width={bgWidth}
         height={bgHeight}

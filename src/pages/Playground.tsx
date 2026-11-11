@@ -1,11 +1,11 @@
-import { SkillOverview } from "../components/home/SkillOverview";
+import { Routing } from "../components/playground/Routing";
 
 export const Playground = (props: any) => {
   return (
     <group {...props} dispose={null}>
       {/* <axesHelper args={[10]} /> */}
 
-      <SkillOverview />
+      {/* <SkillOverviewSection /> */}
       {/* <SkillsDescription skill={ORBITS[1]} /> */}
       {/* <TSLNode /> */}
       {/* <GlowAppIcon /> */}
@@ -17,7 +17,7 @@ export const Playground = (props: any) => {
 
       {/* <SkillBalloonVisualizer /> */}
 
-      {/* <Routing /> */}
+      <Routing />
 
       {/* <group scale={2}>
         <FlowRowChips

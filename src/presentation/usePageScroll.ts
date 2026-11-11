@@ -1,18 +1,28 @@
-import type { RefObject } from "react";
+import { useEffect, type RefObject } from "react";
 import { useStaticScrollTrigger } from "./useStaticScrollTrigger";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
 import { lerp } from "three/src/math/MathUtils.js";
 import { UI } from "./Core";
+import { useScrollStore } from "../stores/ScrollStore";
 
 export const usePageScroll = ({
+  count,
   contentRef,
   backgroundRef,
 }: {
+  count: number
   contentRef: RefObject<any>;
   backgroundRef: RefObject<any>;
 }) => {
+  const setTotalPages = useScrollStore(state => state.setTotalPages)
+
+  // Remove this, once when we setup RouterScrollSync (duplicate code)
   useStaticScrollTrigger();
+
+  useEffect(() => {
+    setTotalPages(count)
+  }, [setTotalPages, count])
 
   const viewport = useThree((t) => t.viewport);
   const scroll = useScroll();

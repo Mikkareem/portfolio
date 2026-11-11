@@ -1,4 +1,5 @@
 import { useScroll } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import {
   BrowserRouter,
@@ -7,6 +8,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { useScrollStore } from "../../stores/ScrollStore";
 
 export function Routing() {
   return (
@@ -22,6 +24,11 @@ export function Routing() {
 
 function Home() {
   const navigate = useNavigate();
+  const setTotalPages = useScrollStore((state) => state.setTotalPages);
+
+  useEffect(() => {
+    setTotalPages(10);
+  }, [setTotalPages]);
 
   return (
     <mesh onClick={() => navigate("details")}>
@@ -33,6 +40,11 @@ function Home() {
 
 function Details() {
   const navigate = useNavigate();
+  const setTotalPages = useScrollStore((state) => state.setTotalPages);
+
+  useEffect(() => {
+    setTotalPages(6);
+  }, [setTotalPages]);
 
   return (
     <mesh onClick={() => navigate(-1)}>
@@ -42,32 +54,69 @@ function Details() {
   );
 }
 
+const scrollBackstack = new Map<string, number>();
+
 function RouterScrollSync() {
   const scroll = useScroll();
   const location = useLocation();
+  const invalidate = useThree((state) => state.invalidate);
+  const isRestoring = useRef(false);
 
-  // Store scroll positions keyed by React Router's unique location.key
-  const scrollPositions = useRef<any>({});
-
+  // Continuously record scroll position & record final position on route exit
   useEffect(() => {
-    if (!scroll || !scroll.el) return;
+    const el = scroll?.el;
+    if (!el) return;
 
-    // 1. Save scroll position of the current page before unmounting/changing
-    const handleScroll = () => {
-      scrollPositions.current[location.key] = scroll.el.scrollTop;
+    const onScroll = () => {
+      if (isRestoring.current) return;
+      scrollBackstack.set(location.key, el.scrollTop);
     };
 
-    const scrollEl = scroll.el;
-    scrollEl.addEventListener("scroll", handleScroll, { passive: true });
-
-    // 2. Restore scroll position for this specific history key (handles Back/Forward perfectly)
-    const savedPosition = scrollPositions.current[location.key] || 0;
-    scrollEl.scrollTop = savedPosition;
+    el.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      scrollEl.removeEventListener("scroll", handleScroll);
+      if (!isRestoring.current) {
+        scrollBackstack.set(location.key, el.scrollTop);
+      }
+      el.removeEventListener("scroll", onScroll);
     };
   }, [location.key, scroll]);
+
+  // Restore or reset scroll position on route change
+  useEffect(() => {
+    const el = scroll?.el;
+    if (!el) return;
+
+    // New route = reset to 0 (top of page); Backstack route = restore saved position
+    const targetScroll = scrollBackstack.get(location.key) ?? 0;
+
+    isRestoring.current = true;
+
+    const frameId = requestAnimationFrame(() => {
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      const targetOffset = maxScroll > 0 ? targetScroll / maxScroll : 0;
+
+      // 1. Reset or restore DOM scroll
+      el.scrollTop = targetScroll;
+
+      // 2. Sync Drei's internal damping target
+      if ((scroll as any).scroll) {
+        (scroll as any).scroll.current = targetOffset;
+      }
+
+      // 3. Sync immediate Drei state offset
+      scroll.offset = targetOffset;
+
+      invalidate();
+
+      // Release lock on the next frame so programmatic scroll events aren't recorded
+      requestAnimationFrame(() => {
+        isRestoring.current = false;
+      });
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [location.key, scroll, invalidate]);
 
   return null;
 }
