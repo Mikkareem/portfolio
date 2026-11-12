@@ -56,7 +56,6 @@ export const SimpleAboutCard = (props: any) => {
             if (bounds) {
               const measuredWidth = bounds[2] - bounds[0]; // maxY - minY
               const measuredHeight = bounds[3] - bounds[1]; // maxY - minY
-              console.log("Title", measuredWidth, measuredHeight);
               setTitleSize({ w: measuredWidth, h: measuredHeight });
             }
           }}
@@ -79,7 +78,6 @@ export const SimpleAboutCard = (props: any) => {
             if (bounds) {
               const measuredWidth = bounds[2] - bounds[0]; // maxY - minY
               const measuredHeight = bounds[3] - bounds[1]; // maxY - minY
-              console.log("Paragraph", measuredWidth, measuredHeight);
               setParagraphSize({ w: measuredWidth, h: measuredHeight });
             }
           }}

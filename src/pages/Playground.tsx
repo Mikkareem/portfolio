@@ -1,6 +1,4 @@
-import { ImageCard } from "../components/playground/ImageCard";
 import { MarkdownTest } from "../components/playground/MarkdownTest";
-import { Routing } from "../components/playground/Routing";
 
 export const Playground = (props: any) => {
   return (
@@ -24,6 +22,7 @@ export const Playground = (props: any) => {
       {/* <ImageCard /> */}
 
       <MarkdownTest />
+      {/* <MarkdownCard /> */}
 
       {/* <group scale={2}>
         <FlowRowChips

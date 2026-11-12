@@ -6,7 +6,7 @@ import { FlowRowChips } from "../playground/FlowRowChips";
 export const SkillsDescription = ({ skill }: any) => {
   return (
     <group>
-      <AdBoard scaleFactorX={0.06} scaleFactorY={0.086} color={"brown"}>
+      <AdBoard scaleFactorX={0.06} scaleFactorY={0.086} color={skill.color}>
         <Card skill={skill} />
       </AdBoard>
     </group>
@@ -81,7 +81,7 @@ const Card = ({ skill }: any) => {
       {cardWidth > 0 && cardHeight > 0 && (
         <mesh position={[0, 0, -0.001]}>
           <planeGeometry args={[cardWidth, cardHeight]} />
-          <meshStandardMaterial color={"brown"} metalness={0.45} />
+          <meshStandardMaterial color={skill.color} metalness={0.45} />
         </mesh>
       )}
 

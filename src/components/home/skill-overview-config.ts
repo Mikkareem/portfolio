@@ -7,7 +7,7 @@ export const ORBITS = [
       height: 96,
       scale: 0.02,
     },
-    color: "",
+    color: "pink",
     description: "Sharing business logic across Android, iOS, desktop, and server while maintaining native experiences.",
   },
   {

@@ -9,11 +9,13 @@ import { degToRad } from "three/src/math/MathUtils.js";
 type SkillsOrbitProps = {
   groupRef: React.RefObject<Group | null>;
   itemRefs: React.RefObject<(Group | null)[]>;
+  activeIndex: number;
 } & ComponentProps<"group">;
 
 export function SkillsOrbit({
   groupRef,
   itemRefs,
+  activeIndex,
   ...groupProps
 }: SkillsOrbitProps) {
   // Compute circular layout once (offset so item 0 starts at front +Z)
@@ -60,8 +62,8 @@ export function SkillsOrbit({
         ))}
       </group>
 
-      <group position-y={2} rotation-x={degToRad(180)}>
-        <PointLightMesh color={"red"} />
+      <group position-y={1.5} rotation-x={degToRad(180)}>
+        <PointLightMesh color={ORBITS[activeIndex].color} />
       </group>
     </>
   );

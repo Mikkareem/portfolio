@@ -28,8 +28,7 @@ export const DEFAULT_MARKDOWN_STYLES: ResolvedMarkdownStyles = {
   bold: {
     fontWeight: 'bold',
     font: '/fonts/GoogleSans-Regular-Variable.ttf',
-    strokeWidth: '1.5%',
-    strokeColor: '#ffffff',
+    outlineWidth: '3.2%',
   },
 
   italic: {
@@ -218,6 +217,12 @@ export function getComputedSpanStyle(
     ...(blockOverride || {}),
   };
 
+  // If block override is bold (e.g., headings), ensure it is visibly bold with matching outline color
+  if (blockOverride?.fontWeight === 'bold' && !blockOverride.outlineWidth) {
+    result.outlineWidth = '3.2%';
+    result.outlineColor = result.color;
+  }
+
   // If code: apply code style
   if (flags.code) {
     Object.assign(result, styles.code);
@@ -226,6 +231,11 @@ export function getComputedSpanStyle(
   // If bold: apply bold style
   if (flags.bold) {
     Object.assign(result, styles.bold);
+    // If outlineWidth is used to synthesize bold and outlineColor is not explicitly customized,
+    // ensure outlineColor matches the text color so it thickens the font without creating a weird outline!
+    if (result.outlineWidth && !styles.bold.outlineColor) {
+      result.outlineColor = result.color;
+    }
   }
 
   // If italic: apply italic style

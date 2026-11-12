@@ -34,6 +34,7 @@ export const SkillOverviewSection = ({ bounds }: { bounds: BoundingBox }) => {
         <SkillsOrbit
           groupRef={leftPanelGroupRef}
           itemRefs={leftPanelIconsRef}
+          activeIndex={activeIndex}
         />
       </group>
 
