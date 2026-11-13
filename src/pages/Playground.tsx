@@ -1,4 +1,4 @@
-import { MarkdownTest } from "../components/playground/MarkdownTest";
+import { CenterTitle } from "../components/playground/CenterTitle";
 
 export const Playground = (props: any) => {
   return (
@@ -21,8 +21,31 @@ export const Playground = (props: any) => {
 
       {/* <ImageCard /> */}
 
-      <MarkdownTest />
+      {/* <MarkdownTest /> */}
       {/* <MarkdownCard /> */}
+
+      {/* <ExperiencePipe /> */}
+
+      {/* <ExperienceCard /> */}
+
+      {/* <WhatCanIDoCard wcid={WhatCanIDos[0]} /> */}
+
+      {/* <DescriptionCard /> */}
+
+      {/* <MajorProjectPreviewCard scale={1.5} /> */}
+
+      {/* <ImageCarousel scale={1.6} cardColor="red" /> */}
+
+      {/* <VideoPlayer scale={1.8} cardColor="red" /> */}
+
+      {/* <DescriptionCard
+        markdown={content}
+        color="#1e1e2e"
+        maxWidth={10}
+        position={[0, 0, 0]}
+      /> */}
+
+      <CenterTitle title="Cloud" position={[0, 0, -20]} />
 
       {/* <group scale={2}>
         <FlowRowChips

@@ -5,6 +5,7 @@ import { BalloonString } from "./BalloonString";
 import SkillCard from "./SkillCard";
 import { type SkillBalloonConfig } from "./config";
 import { useSkillBalloonsClusterSetup } from "./useSkillBalloonsClusterSetup";
+import { CenterTitle } from "../playground/CenterTitle";
 
 export function SkillBalloonsCluster({
   config,
@@ -43,6 +44,8 @@ export function SkillBalloonsCluster({
           balloonRefs={balloonRefs}
         />
       ))}
+
+      <CenterTitle title={config.category} position={[0, 0, -20]} />
     </>
   );
 }
