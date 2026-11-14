@@ -63,7 +63,7 @@ export function PublicFontText({ text = "Hello WebGPU" }) {
   return (
     <mesh>
       <planeGeometry args={[4, 1]} />
-      <meshBasicNodeMaterial map={texture} transparent={true} />
+      <meshBasicMaterial map={texture} transparent={true} />
     </mesh>
   );
 }

@@ -17,34 +17,42 @@ declare global {
 const GAP = 0.25; // Vertical spacing between title and description
 const PADDING = 0.3; // Padding around the text (set to 0 for exact tight fit)
 
-export function AchievementCard({ title, achievement, color }: any) {
+export function AchievementCard({
+  title,
+  achievement,
+  color,
+  minWidth = 0,
+  ...props
+}: any) {
   const titleTextRef = useRef<any>(null);
   const achievementTextRef = useRef<any>(null);
 
-  const [titleTextSize, setTitleTextSize] = useState({ w: 0, h: 0 });
+  const initialTitleW = (title?.length || 0) * 0.28;
+  const initialAchW = (achievement?.length || 0) * 0.65;
+
+  const [titleTextSize, setTitleTextSize] = useState({ w: initialTitleW, h: 0.5 });
   const [achievementTextSize, setAchievementTextSize] = useState({
-    w: 0,
-    h: 0,
+    w: initialAchW,
+    h: 1.3,
   });
 
   const hasDesc = achievementTextSize.h > 0 && achievementTextSize.w > 0;
   const gap = hasDesc && titleTextSize.h > 0 ? GAP : 0;
 
-  const contentWidth = Math.max(titleTextSize.w, achievementTextSize.w);
+  const contentWidth = Math.max(minWidth, titleTextSize.w, achievementTextSize.w);
   const contentHeight = titleTextSize.h + gap + achievementTextSize.h;
 
   const cardWidth = contentWidth + PADDING * 2;
   const cardHeight = contentHeight + PADDING * 2;
 
   return (
-    <group>
+    <group {...props}>
       <mesh position={[0, 0, -(1.0 / 2.0 + 0.001)]}>
         {/* width, height, depth, segments, radius*/}
         {/* @ts-expect-error */}
         <roundedBoxGeometry
           args={[cardWidth + 2 * PADDING, cardHeight + 2 * PADDING, 1, 2, 0.6]}
         />
-        ;
         <meshStandardMaterial
           color={color} //{"#f283b6"}
           metalness={0.34}
@@ -80,10 +88,11 @@ export function AchievementCard({ title, achievement, color }: any) {
           fontSize={1.3}
           color="#fff"
           maxWidth={5}
-          anchorX={"left"}
+          anchorX={"right"}
           anchorY={"top"}
+          textAlign={"right"}
           outlineWidth={0.02}
-          position={[PADDING, -PADDING - titleTextSize.h - gap, 0]}
+          position={[cardWidth - PADDING, -PADDING - titleTextSize.h - gap, 0]}
           onSync={(mesh) => {
             const bounds = mesh.textRenderInfo?.blockBounds;
             if (bounds) {

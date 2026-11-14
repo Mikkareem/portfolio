@@ -9,7 +9,7 @@ export const SimpleAboutCard = (props: any) => {
   // Card dimensions (acting as max-width + padding bounds)
   const padding = 0.23;
   const gap = 0.4;
-  const maxWidth = Math.min(viewport.width / 3, 10) - 2 * padding;
+  const maxWidth = Math.min(Math.max(viewport.width * 0.7, 4.5), 8.5) - 2 * padding;
 
   const [titleSize, setTitleSize] = useState({ w: 0, h: 0 });
   const [paragraphSize, setParagraphSize] = useState({ w: 0, h: 0 });

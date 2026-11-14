@@ -3,7 +3,13 @@ import Background from "../playground/Background";
 import { UI } from "../../presentation/Core";
 import { useThree } from "@react-three/fiber";
 
-export function HomeBackground({ ref }: { ref: RefObject<any> }) {
+export function HomeBackground({
+  ref,
+  count = 6,
+}: {
+  ref: RefObject<any>;
+  count?: number;
+}) {
   const camera = useThree((t) => t.camera);
   const viewport = useThree((t) => t.viewport);
 
@@ -14,34 +20,16 @@ export function HomeBackground({ ref }: { ref: RefObject<any> }) {
 
   return (
     <group ref={ref}>
-      <Background
-        color={"black"}
-        y={0 * bgHeight}
-        z={UI.BG_DEPTH}
-        width={bgWidth}
-        height={bgHeight}
-      />
-      <Background
-        color={"black"}
-        y={-1 * bgHeight}
-        z={UI.BG_DEPTH}
-        width={bgWidth}
-        height={bgHeight}
-      />
-      <Background
-        color={"black"}
-        y={-2 * bgHeight}
-        z={UI.BG_DEPTH}
-        width={bgWidth}
-        height={bgHeight}
-      />
-      <Background
-        color={"black"}
-        y={-3 * bgHeight}
-        z={UI.BG_DEPTH}
-        width={bgWidth}
-        height={bgHeight}
-      />
+      {Array.from({ length: count }, (_, i) => (
+        <Background
+          key={i}
+          color={"black"}
+          y={-i * bgHeight}
+          z={UI.BG_DEPTH}
+          width={bgWidth}
+          height={bgHeight}
+        />
+      ))}
     </group>
   );
 }

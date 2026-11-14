@@ -1,7 +1,6 @@
 import { extend, useFrame, type ThreeElements } from "@react-three/fiber";
 import {
   Suspense,
-  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -44,13 +43,13 @@ const TITLE_FONT_SIZE = 0.35;
 const SUBTITLE_FONT_SIZE = 0.2;
 
 // ─── Platform chip constants ────────────────────────────────
-const CHIP_FONT_SIZE = 0.14;
-const CHIP_PADDING_X = 0.15;
-const CHIP_PADDING_Y = 0.08;
+const CHIP_FONT_SIZE = 0.2;
+const CHIP_PADDING_X = 0.22;
+const CHIP_PADDING_Y = 0.1;
 const CHIP_HEIGHT = CHIP_FONT_SIZE + CHIP_PADDING_Y * 2;
 const CHIP_DEPTH = 0.12;
 const CHIP_RADIUS = CHIP_HEIGHT / 2;
-const CHIP_COL_GAP = 0.1;
+const CHIP_COL_GAP = 0.14;
 
 // ─── Loading indicator constants ────────────────────────────
 const SPINNER_RING_RADIUS = 0.4;
@@ -75,19 +74,6 @@ export type MajorProject = {
   subtitle: string;
   platforms: ("Android" | "Ios" | "Desktop" | "Web")[];
 };
-
-type TextSize = { w: number; h: number };
-const ZERO: TextSize = { w: 0, h: 0 };
-
-function measure(mesh: any, setter: (s: TextSize) => void) {
-  const bounds = mesh.textRenderInfo?.blockBounds;
-  if (bounds) {
-    setter({
-      w: Math.abs(bounds[2] - bounds[0]),
-      h: Math.abs(bounds[3] - bounds[1]),
-    });
-  }
-}
 
 // ─── Chip layout helper ────────────────────────────────────
 interface ChipLayout {
@@ -150,11 +136,11 @@ function LoadingSpinner({ width, height }: { width: number; height: number }) {
       {/* Background dimmer */}
       <mesh>
         <planeGeometry args={[width, height]} />
-        <meshBasicMaterial color="#0a0a0f" opacity={0.7} transparent />
+        <meshBasicMaterial color="#0a0a0f" opacity={0.6} transparent />
       </mesh>
 
       {/* Spinning ring */}
-      <mesh ref={ringRef}>
+      <mesh ref={ringRef} position={[0, 0, 0.01]}>
         <torusGeometry
           args={[
             SPINNER_RING_RADIUS,
@@ -280,6 +266,7 @@ function Thumbnail({
   height: number;
 }) {
   const hasVideo = Boolean(thumbnail.video);
+  const hasImage = Boolean(thumbnail.image);
 
   return (
     <group>
@@ -287,27 +274,34 @@ function Thumbnail({
       <RoundedBox
         args={[width, height, THUMBNAIL_DEPTH]}
         radius={THUMBNAIL_RADIUS}
-        smoothness={4}
+        smoothness={2}
         position={[width / 2, -height / 2, -THUMBNAIL_DEPTH / 2]}
       >
         <meshStandardMaterial color="#111" roughness={0.5} />
       </RoundedBox>
 
-      <Suspense fallback={<LoadingSpinner width={width} height={height} />}>
-        {hasVideo ? (
+      {hasVideo ? (
+        <Suspense fallback={<LoadingSpinner width={width} height={height} />}>
           <VideoThumbnail
             src={thumbnail.video!}
             width={width}
             height={height}
           />
-        ) : (
+        </Suspense>
+      ) : hasImage ? (
+        <Suspense fallback={<LoadingSpinner width={width} height={height} />}>
           <ImageThumbnail
             src={thumbnail.image!}
             width={width}
             height={height}
           />
-        )}
-      </Suspense>
+        </Suspense>
+      ) : (
+        <mesh position={[width / 2, -height / 2, 0]}>
+          <planeGeometry args={[width, height]} />
+          <meshStandardMaterial color="#1a1a2e" roughness={0.5} />
+        </mesh>
+      )}
     </group>
   );
 }
@@ -334,9 +328,26 @@ export const MajorProjectPreviewCard = ({
   project?: MajorProject;
   color?: string;
 } & JSX.IntrinsicElements["group"]) => {
-  // ── Measured sizes ─────────────────────────────────────
-  const [titleSize, setTitleSize] = useState<TextSize>(ZERO);
-  const [subtitleSize, setSubtitleSize] = useState<TextSize>(ZERO);
+  // ── Synchronously measured text sizes to eliminate re-render cycles ─
+  const titleWidth = useMemo(
+    () =>
+      measureTextWidth(project.title, {
+        fontSize: TITLE_FONT_SIZE,
+        font: Fonts.bodyRegular.name,
+      }),
+    [project.title],
+  );
+  const titleHeight = titleWidth > MAX_TEXT_WIDTH ? 0.82 : 0.42;
+
+  const subtitleWidth = useMemo(
+    () =>
+      measureTextWidth(project.subtitle, {
+        fontSize: SUBTITLE_FONT_SIZE,
+        font: Fonts.bodyRegular.name,
+      }),
+    [project.subtitle],
+  );
+  const subtitleHeight = subtitleWidth > MAX_TEXT_WIDTH ? 0.52 : 0.26;
 
   // ── Platform chip layout ──────────────────────────────
   const chipLayout = useMemo(
@@ -348,21 +359,21 @@ export const MajorProjectPreviewCard = ({
   const thumbnailWidth = MAX_TEXT_WIDTH;
   const thumbnailHeight = THUMBNAIL_HEIGHT;
 
-  const hasTitle = titleSize.h > 0;
-  const hasSubtitle = subtitleSize.h > 0;
+  const hasTitle = Boolean(project.title);
+  const hasSubtitle = Boolean(project.subtitle);
   const hasChips = chipLayout.totalHeight > 0;
 
   const textContentHeight =
-    titleSize.h +
+    titleHeight +
     (hasSubtitle && hasTitle ? TITLE_SUBTITLE_GAP : 0) +
-    subtitleSize.h +
+    subtitleHeight +
     (hasChips && (hasTitle || hasSubtitle) ? SUBTITLE_PLATFORMS_GAP : 0) +
     chipLayout.totalHeight;
 
   const contentWidth = Math.max(
     thumbnailWidth,
-    titleSize.w,
-    subtitleSize.w,
+    titleWidth,
+    subtitleWidth,
     chipLayout.totalWidth,
   );
   const contentHeight = thumbnailHeight + THUMB_BOTTOM_GAP + textContentHeight;
@@ -374,11 +385,23 @@ export const MajorProjectPreviewCard = ({
   const yThumb = -PADDING;
   const yTitle = yThumb - thumbnailHeight - THUMB_BOTTOM_GAP;
   const ySubtitle =
-    yTitle - titleSize.h - (hasSubtitle && hasTitle ? TITLE_SUBTITLE_GAP : 0);
+    yTitle - titleHeight - (hasSubtitle && hasTitle ? TITLE_SUBTITLE_GAP : 0);
   const yChips =
     ySubtitle -
-    subtitleSize.h -
+    subtitleHeight -
     (hasChips && (hasTitle || hasSubtitle) ? SUBTITLE_PLATFORMS_GAP : 0);
+
+  // ── Stable geometry args to prevent GPU re-allocations ───
+  const cardGeoArgs = useMemo<[number, number, number, number, number]>(
+    () => [
+      cardWidth + 2 * PADDING,
+      cardHeight + 2 * PADDING,
+      CARD_DEPTH,
+      2,
+      0.6,
+    ],
+    [cardWidth, cardHeight],
+  );
 
   // ── Render ────────────────────────────────────────────
   return (
@@ -386,16 +409,14 @@ export const MajorProjectPreviewCard = ({
       {/* ── Card background ─────────────────────────────── */}
       <mesh position={[0, 0, -(CARD_DEPTH / 2 + 0.001)]}>
         {/* @ts-expect-error */}
-        <roundedBoxGeometry
-          args={[
-            cardWidth + 2 * PADDING,
-            cardHeight + 2 * PADDING,
-            CARD_DEPTH,
-            2,
-            0.6,
-          ]}
+        <roundedBoxGeometry args={cardGeoArgs} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.16}
+          metalness={0.25}
+          roughness={0.3}
         />
-        <meshStandardMaterial color={color} metalness={0.2} roughness={0.4} />
       </mesh>
 
       {/* ── Content origin: top-left ───────────────────── */}
@@ -420,7 +441,6 @@ export const MajorProjectPreviewCard = ({
           maxWidth={MAX_TEXT_WIDTH}
           outlineWidth={0.012}
           position={[PADDING, yTitle, 0]}
-          onSync={(m) => measure(m, setTitleSize)}
         >
           {project.title}
         </Text>
@@ -429,13 +449,13 @@ export const MajorProjectPreviewCard = ({
         <Text
           font={Fonts.bodyRegular.name}
           fontSize={SUBTITLE_FONT_SIZE}
-          color="#999"
+          color="#e2e8f0"
           anchorX="left"
           anchorY="top"
           maxWidth={MAX_TEXT_WIDTH}
-          outlineWidth={0.006}
+          outlineWidth={0.008}
+          outlineColor="#111827"
           position={[PADDING, ySubtitle, 0]}
-          onSync={(m) => measure(m, setSubtitleSize)}
         >
           {project.subtitle}
         </Text>
@@ -448,7 +468,7 @@ export const MajorProjectPreviewCard = ({
               <RoundedBox
                 args={[chip.width, CHIP_HEIGHT, CHIP_DEPTH]}
                 radius={CHIP_RADIUS}
-                smoothness={4}
+                smoothness={2}
               >
                 <meshStandardMaterial
                   color={chip.color}
@@ -461,8 +481,11 @@ export const MajorProjectPreviewCard = ({
               <Text
                 font={Fonts.bodyRegular.name}
                 fontSize={CHIP_FONT_SIZE}
-                fontWeight={600}
-                color="#fff"
+                fontWeight="bold"
+                letterSpacing={0.01}
+                color="#ffffff"
+                outlineWidth={0.008}
+                outlineColor="#ffffff"
                 anchorX="center"
                 anchorY="middle"
                 position={[0, 0, CHIP_DEPTH / 2 + 0.001]}

@@ -109,6 +109,7 @@ export interface DescriptionCardProps
   markdown?: string;
   content?: string;
   color?: string;
+  width?: number;
   maxWidth?: number;
   padding?: number;
   depth?: number;
@@ -125,6 +126,7 @@ export const DescriptionCard = ({
   markdown,
   content,
   color = DEFAULT_CARD_COLOR,
+  width,
   maxWidth = DEFAULT_MAX_TEXT_WIDTH,
   padding = DEFAULT_PADDING,
   depth = DEFAULT_CARD_DEPTH,
@@ -180,10 +182,10 @@ export const DescriptionCard = ({
     [onLayoutProp],
   );
 
-  const contentWidth = descSize.w;
+  const contentWidth = width ? width - padding * 4 : descSize.w;
   const contentHeight = descSize.h;
 
-  const cardWidth = contentWidth + padding * 2;
+  const cardWidth = width ? width - padding * 2 : contentWidth + padding * 2;
   const cardHeight = contentHeight + padding * 2;
 
   return (
@@ -202,6 +204,8 @@ export const DescriptionCard = ({
         />
         <meshStandardMaterial
           color={color}
+          emissive={color}
+          emissiveIntensity={0.16}
           metalness={metalness}
           roughness={roughness}
         />

@@ -19,7 +19,6 @@ declare global {
 
 // ─── Layout constants ───────────────────────────────────────
 const PADDING = 0.4;
-const SECTION_GAP = 0.25; // vertical gap between sections
 const TAG_BOTTOM_GAP = 0.2; // gap below the tag
 const TITLE_DESC_GAP = 0.15; // gap between title and description
 const DESC_CHIPS_GAP = 0.25; // gap between description and chips

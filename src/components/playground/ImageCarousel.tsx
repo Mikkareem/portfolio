@@ -520,8 +520,10 @@ export const ImageCarousel = ({
         />
         <meshStandardMaterial
           color={cardColor}
+          emissive={cardColor}
+          emissiveIntensity={0.16}
           metalness={0.25}
-          roughness={0.35}
+          roughness={0.3}
         />
       </mesh>
 

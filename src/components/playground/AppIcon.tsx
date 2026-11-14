@@ -117,7 +117,7 @@ function SelectiveGlowingCircle({
       </mesh>
 
       {/* Soft outer halo for the bloom look */}
-      <mesh>
+      <mesh scale={haloScale}>
         <torusGeometry args={[radius, tubeRadius * 4, 16, 100]} />
         <meshBasicMaterial
           color={color}
