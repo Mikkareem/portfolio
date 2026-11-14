@@ -1,98 +1,112 @@
 import { Vector3 } from "three";
 
-export type SkillBalloonConfig = {
-  category: string,
-  boxColor: string,
-  textColor: string,
-  ropeColor: string,
-  skills: {
-    name: string,
-    basePos: Vector3
-  }[],
-  speedMultiplier: number,
-  phaseOffset: number,
+export const DEFAULT_Z_RANGE: [number, number] = [-2, 2];
+
+export function lerpZ(
+  zNorm: number,
+  range: [number, number] = DEFAULT_Z_RANGE
+): number {
+  return range[0] + (range[1] - range[0]) * zNorm;
 }
+
+export type SkillItem = {
+  name: string;
+  z: number;
+  basePos?: Vector3;
+};
+
+export type SkillBalloonConfig = {
+  category: string;
+  boxColor: string;
+  textColor: string;
+  ropeColor: string;
+  zRange?: [number, number]; // Configurable depth range, defaults to DEFAULT_Z_RANGE [-2, 2]
+  skills: Array<SkillItem>;
+  speedMultiplier: number;
+  phaseOffset: number;
+};
 
 
 // x=0.07..0.92, y=0.17..0.92
 export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
   {
     category: 'Mobile',
+    zRange: [-2, 2],
     boxColor: "#150578",
     textColor: '#fff',
     ropeColor: '#150578',
     skills: [
       {
         name: 'Kotlin Multiplatform',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack Compose',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Compose Multiplatform',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack\nNavigation Compose',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack\nNavigation 3',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack\nRoom (2.x,3.x)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack Paging 3',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack WorkManager',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack DataStore',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jetpack Glance',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Koin',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Koin Annotations',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Dagger Hilt',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Ktor Client',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Retrofit',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Coil 3.0',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase Integrations',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Google Maps Compose',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ],
     speedMultiplier: getRandom(),
@@ -101,6 +115,7 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
 
   {
     category: 'DevOps',
+    zRange: [-2, 2],
     boxColor: "#150578",
     textColor: '#fff',
     ropeColor: '#150578',
@@ -109,73 +124,74 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     skills: [
       {
         name: 'Docker',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Docker Compose',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Kubernetes',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Helm Charts\n& Templates',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Terraform',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'ArgoCD',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Cloud\n(AWS & GCP)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Jenkins',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GitHub Actions',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Prometheus',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Grafana\n(Alloy, Loki, Tempo)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'OpenTelemetry',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'ELK Stack',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Splunk',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Consul',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Vault',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ]
   },
 
   {
     category: 'Backend',
+    zRange: [-2, 2],
     boxColor: "#150578",
     textColor: '#fff',
     ropeColor: '#fe5d26',
@@ -184,93 +200,94 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     skills: [
       {
         name: 'Spring Boot',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Java',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Kotlin',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Ktor Server',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'NodeJs',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Kafka',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'RabbitMQ',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Redis',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Caffeine Cache',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'SQL',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'MySQL',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'PostgreSQL',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'H2',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'MongoDB',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Cassandra',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Neo4j',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Stripe SDK',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase\nAdmin SDK',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP/AWS SDK',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'JUnit Testing',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ]
   },
 
   {
     category: 'Spring',
+    zRange: [-2, 2],
     boxColor: "#9e0059",
     textColor: '#fff',
     ropeColor: '#150578',
@@ -279,89 +296,90 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     skills: [
       {
         name: 'Spring Boot\n/w Java & Kotlin',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Boot\nWeb & Webflux (Kotlin)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Security',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring OAuth\nAuthorization Server',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring OAuth\nClient',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring OAuth\nResource Server',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Data\n(JPA & JDBC)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Data MongoDB',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Data Neo4J',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Data Cassandra',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Boot Actuator',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Boot Micrometer',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring AOP',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nGateway',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nConfig Server',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nConfig Client',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nConfig Client (Vault)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nStreams (Kafka)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nBus',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Cloud\nConsul',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ]
   },
 
   {
     category: 'Testing',
+    zRange: [-2, 2],
     boxColor: "#150578",
     textColor: '#fff',
     ropeColor: '#150578',
@@ -370,85 +388,86 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     skills: [
       {
         name: 'JUnit 4 & 5',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'KoTest',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'TestBalloons',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Konsist',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Boot\nTesting',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Testing\n(Web/WebFlux)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Spring Security Testing',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'TestContainers',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'WireMock',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'ToxiProxy',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'UIAutomator Tests',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Compose UI /\nUnit Tests',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Robolectric\nRoborazzi',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Screenshot Testing',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Benchmark Testing',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Unit / Integration\nTests',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'E2E & UI Tests',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'ViTest',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Playwright Test',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ]
   },
 
   {
     category: 'Web',
+    zRange: [-2, 2],
     boxColor: "#02c3bd",
     textColor: '#fff',
     ropeColor: '#150578',
@@ -457,85 +476,86 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     skills: [
       {
         name: 'React.js',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Next.js',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'TypeScript',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'JavaScript',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Tailwind CSS',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'TanStack Query',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'TanStack Router',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Zustand',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Redux',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'React Router',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GSAP Animations',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'React Motion\n(Framer)',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Three.js',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'React Three Fiber',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'React Three Drei',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'React Three Rapier',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'p5.js',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'ViTest',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Playwright Test',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ],
   },
 
   {
     category: 'Cloud',
+    zRange: [-2, 2],
     boxColor: "#150578",
     textColor: '#fff',
     ropeColor: '#150578',
@@ -544,102 +564,102 @@ export const SKILLS_BALLOON_CONFIGS: Array<SkillBalloonConfig> = [
     skills: [
       {
         name: 'AWS EC2',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'AWS VPC',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'AWS S3',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'AWS Lambda',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'AWS RDS',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'AWS SNS',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'AWS EKS',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP Compute Engine',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP VPC',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP Cloud Storage',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP Cloud Run',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP Cloud SQL',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP Pub / Sub',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'GCP GKE',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase Auth',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase Storage',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase\nReal-time Database',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase\nPush Notification',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase Crashlytics',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase Analytics',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
       {
         name: 'Firebase App Distribution',
-        basePos: new Vector3(getRandomX(), getRandomY(), getRandomZ())
+        z: getRandom()
       },
     ],
   }
 ];
 
-function getRandomX() {
+export function getRandomX() {
   return Math.min(Math.max(getRandom(), 0.07), 0.92);
 }
 
-function getRandomY() {
+export function getRandomY() {
   return Math.min(Math.max(getRandom(), 0.17), 0.92);
 }
 
-function getRandomZ() {
+export function getRandomZ() {
   return getRandom();
 }
 
-function getRandom() { return Math.random() }
+export function getRandom() { return Math.random() }

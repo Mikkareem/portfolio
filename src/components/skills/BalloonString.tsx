@@ -1,6 +1,17 @@
 import { useRef } from "react";
-import { useBalloonStringSetup } from "./useBalloonStringSetup";
+import {
+  useBalloonStringSetup,
+  TUBULAR_SEGMENTS,
+  RADIAL_SEGMENTS,
+  STRING_RADIUS,
+} from "./useBalloonStringSetup";
 import { QuadraticBezierCurve3, Vector3 } from "three";
+
+const initialCurve = new QuadraticBezierCurve3(
+  new Vector3(0, 0, -5),
+  new Vector3(0, 1, -2.5),
+  new Vector3(0, 2, 0)
+);
 
 // Component that creates the joint link between anchor and balloon
 export function BalloonString({ anchorRef, balloonRef, color }: any) {
@@ -12,14 +23,10 @@ export function BalloonString({ anchorRef, balloonRef, color }: any) {
     <mesh ref={meshRef}>
       <tubeGeometry
         args={[
-          new QuadraticBezierCurve3(
-            new Vector3(0, 0, 0),
-            new Vector3(0, 1, 0),
-            new Vector3(0, 2, 0),
-          ),
-          20,
-          0.02,
-          8,
+          initialCurve,
+          TUBULAR_SEGMENTS,
+          STRING_RADIUS,
+          RADIAL_SEGMENTS,
           false,
         ]}
       />

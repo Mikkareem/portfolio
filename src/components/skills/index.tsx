@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { usePageScroll } from "../../presentation/usePageScroll";
-import { useBounds } from "../../presentation/useBounds";
 import { SkillsBackground } from "./SkillsBackground";
 import { Physics } from "@react-three/rapier";
 import { SKILLS_BALLOON_CONFIGS } from "./config";
@@ -10,49 +9,45 @@ export default function Skills() {
   const skillsRef = useRef<any>(null);
   const bgRef = useRef<any>(null);
 
-  usePageScroll({ count: 7, contentRef: skillsRef, backgroundRef: bgRef });
+  // 7 clusters with a 1-page gap between each:
+  // Cluster 0 (Mobile)  -> Page 0
+  // Empty Page          -> Page 1
+  // Cluster 1 (DevOps)  -> Page 2
+  // Empty Page          -> Page 3
+  // Cluster 2 (Backend) -> Page 4
+  // Empty Page          -> Page 5
+  // Cluster 3 (Spring)  -> Page 6
+  // Empty Page          -> Page 7
+  // Cluster 4 (Testing) -> Page 8
+  // Empty Page          -> Page 9
+  // Cluster 5 (Web)     -> Page 10
+  // Empty Page          -> Page 11
+  // Cluster 6 (Cloud)   -> Page 12
+  // Total = 13 pages (from page 0 to page 12)
+  const totalClusters = SKILLS_BALLOON_CONFIGS.length;
+  const totalPages = (totalClusters - 1) * 2 + 1; // 13
 
-  const mobileSkillsBounds = useBounds(0);
-  const devOpsSkillsBounds = useBounds(1);
-  const backendSkillsBounds = useBounds(2);
-  const springSkillsBounds = useBounds(3);
-  const testingSkillsBounds = useBounds(4);
-  const webSkillsBounds = useBounds(5);
-  const cloudSkillsBounds = useBounds(6);
+  usePageScroll({
+    count: totalPages,
+    contentRef: skillsRef,
+    backgroundRef: bgRef,
+  });
 
   return (
     <>
-      <SkillsBackground ref={bgRef} />
+      <SkillsBackground ref={bgRef} count={totalPages} />
       <group ref={skillsRef}>
         <Physics gravity={[0, -9.81, 0]}>
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[0]}
-            bounds={mobileSkillsBounds}
-          />
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[1]}
-            bounds={devOpsSkillsBounds}
-          />
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[2]}
-            bounds={backendSkillsBounds}
-          />
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[3]}
-            bounds={springSkillsBounds}
-          />
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[4]}
-            bounds={testingSkillsBounds}
-          />
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[5]}
-            bounds={webSkillsBounds}
-          />
-          <SkillBalloonsSection
-            config={SKILLS_BALLOON_CONFIGS[6]}
-            bounds={cloudSkillsBounds}
-          />
+          {SKILLS_BALLOON_CONFIGS.map((config, index) => {
+            const pageIndex = index * 2;
+            return (
+              <SkillBalloonsSection
+                key={config.category}
+                pageIndex={pageIndex}
+                config={config}
+              />
+            );
+          })}
         </Physics>
       </group>
     </>

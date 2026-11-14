@@ -6,9 +6,10 @@ type SkillCardProps = {
   skillText: string;
   boxColor: ColorRepresentation;
   textColor: ColorRepresentation;
+  scale?: number;
 };
 
-const SkillCard = ({ skillText, boxColor, textColor }: SkillCardProps) => {
+const SkillCard = ({ skillText, boxColor, textColor, scale = 1 }: SkillCardProps) => {
   const [skillTextSize, setSkillTextSize] = useState({ w: 0, h: 0 });
 
   const cardWidth = 2 * PADDING + skillTextSize.w;
@@ -17,7 +18,7 @@ const SkillCard = ({ skillText, boxColor, textColor }: SkillCardProps) => {
   const meshZ = -DEPTH / 2.0 - 0.01;
 
   return (
-    <group>
+    <group scale={scale}>
       <mesh position={[0, 0, meshZ]}>
         <boxGeometry args={[cardWidth, cardHeight, DEPTH]} />
         <meshStandardMaterial
