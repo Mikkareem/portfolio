@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { useThree } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import type { BoundingBox } from "../../presentation/Types";
 import { MajorProjectPreviewCard } from "../playground/MajorProjectPreviewCard";
 import { FloatingActionButton } from "./FloatingActionButton";
-import { ProjectsModal } from "./ProjectsModal";
 import { MAJOR_PROJECTS } from "./projects-data";
 import { Fonts } from "../../presentation/Core";
+import { useNavigate } from "react-router-dom";
 
 export interface MajorProjectsSectionProps {
   bounds: BoundingBox;
@@ -20,7 +19,7 @@ export function MajorProjectsSection({
   portraitScale: propPortraitScale,
 }: MajorProjectsSectionProps) {
   const viewport = useThree((t) => t.viewport);
-  const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const middle = {
     x: (bounds.right + bounds.left) / 2.0,
@@ -34,7 +33,7 @@ export function MajorProjectsSection({
 
   // ─── Landscape Layout (Horizontal Side-by-Side) ─
   if (isLandscape) {
-    const cardScale = propLandscapeScale ?? 1.10;
+    const cardScale = propLandscapeScale ?? 1.1;
 
     const scaledW = cardWidth * cardScale;
     const scaledH = cardHeight * cardScale;
@@ -71,7 +70,8 @@ export function MajorProjectsSection({
               anchorY="middle"
               position={[0, -0.42, 0]}
             >
-              Production platforms, multiplatform systems & enterprise architectures
+              Production platforms, multiplatform systems & enterprise
+              architectures
             </Text>
           </group>
 
@@ -106,16 +106,9 @@ export function MajorProjectsSection({
             floatIntensity={0.35}
             floatingRange={[-0.04, 0.04]}
             isExternal={true}
-            onClick={() => setModalOpen(true)}
+            onClick={() => navigate("/projects")}
           />
         </group>
-
-        {modalOpen && (
-          <ProjectsModal
-            initialCategory="major"
-            onClose={() => setModalOpen(false)}
-          />
-        )}
       </>
     );
   }
@@ -191,16 +184,9 @@ export function MajorProjectsSection({
           floatIntensity={0.35}
           floatingRange={[-0.04, 0.04]}
           isExternal={true}
-          onClick={() => setModalOpen(true)}
+          onClick={() => navigate("/projects")}
         />
       </group>
-
-      {modalOpen && (
-        <ProjectsModal
-          initialCategory="major"
-          onClose={() => setModalOpen(false)}
-        />
-      )}
     </>
   );
 }

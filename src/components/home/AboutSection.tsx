@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useThree } from "@react-three/fiber";
+import { useNavigate } from "react-router-dom";
 import { degToRad } from "three/src/math/MathUtils.js";
 import type { BoundingBox } from "../../presentation/Types";
 import AdBoard from "../playground/AdBoard";
-import { SimpleAboutCard } from "./SimpleAboutCard";
-import { useThree } from "@react-three/fiber";
 import {
   FloatingActionButton,
   type FloatingActionButtonProps,
 } from "./FloatingActionButton";
-import { AboutModals, type ActiveModalType } from "./AboutModals";
+import { SimpleAboutCard } from "./SimpleAboutCard";
 
 export function AboutSection({ bounds }: { bounds: BoundingBox }) {
   const viewport = useThree((t) => t.viewport);
-  const [activeModal, setActiveModal] = useState<ActiveModalType>(null);
+  const navigate = useNavigate();
 
   const middle = {
     x: (bounds.right + bounds.left) / 2.0,
@@ -60,7 +59,7 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
           floatIntensity: 0.45,
           floatingRange: [-0.05, 0.05],
           isExternal: false,
-          onClick: () => setActiveModal("articles"),
+          onClick: () => navigate("/articles"),
         },
         {
           label: "Read More\n about me",
@@ -81,7 +80,7 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
           floatIntensity: 0.4,
           floatingRange: [-0.04, 0.05],
           isExternal: false,
-          onClick: () => setActiveModal("about"),
+          onClick: () => navigate("/about"),
         },
         {
           label: "GitHub",
@@ -128,11 +127,7 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
         {
           label: "My Articles",
           type: "articles",
-          position: [
-            -visW * 0.24,
-            Math.min(visH * 0.36, 4.3),
-            0.35,
-          ],
+          position: [-visW * 0.24, Math.min(visH * 0.36, 4.3), 0.35],
           accentColor: "#10b981",
           glowColor: "#34d399",
           baseWidth: 2.95,
@@ -142,16 +137,12 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
           floatIntensity: 0.45,
           floatingRange: [-0.05, 0.05],
           isExternal: false,
-          onClick: () => setActiveModal("articles"),
+          onClick: () => navigate("/articles"),
         },
         {
           label: "GitHub",
           type: "github",
-          position: [
-            visW * 0.24,
-            Math.min(visH * 0.26, 3.1),
-            0.35,
-          ],
+          position: [visW * 0.24, Math.min(visH * 0.26, 3.1), 0.35],
           accentColor: "#0ea5e9",
           glowColor: "#38bdf8",
           baseWidth: 2.35,
@@ -167,11 +158,7 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
           label: "Read More\n about me",
           type: "about",
           textAlign: "center",
-          position: [
-            -visW * 0.23,
-            -Math.min(visH * 0.26, 3.1),
-            0.35,
-          ],
+          position: [-visW * 0.23, -Math.min(visH * 0.26, 3.1), 0.35],
           accentColor: "#8b5cf6",
           glowColor: "#a78bfa",
           baseWidth: 2.85,
@@ -182,16 +169,12 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
           floatIntensity: 0.4,
           floatingRange: [-0.04, 0.05],
           isExternal: false,
-          onClick: () => setActiveModal("about"),
+          onClick: () => navigate("/about"),
         },
         {
           label: "Contact Me",
           type: "contact",
-          position: [
-            visW * 0.23,
-            -Math.min(visH * 0.36, 4.3),
-            0.35,
-          ],
+          position: [visW * 0.23, -Math.min(visH * 0.36, 4.3), 0.35],
           accentColor: "#f43f5e",
           glowColor: "#fb7185",
           baseWidth: 2.85,
@@ -225,14 +208,6 @@ export function AboutSection({ bounds }: { bounds: BoundingBox }) {
           <FloatingActionButton key={cfg.label} {...cfg} />
         ))}
       </group>
-
-      {/* Interactive modals for Read more / Articles */}
-      {activeModal && (
-        <AboutModals
-          activeModal={activeModal}
-          onClose={() => setActiveModal(null)}
-        />
-      )}
     </>
   );
 }

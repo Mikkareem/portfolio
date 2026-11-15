@@ -1,9 +1,7 @@
 import { OrbitControls, ScrollControls, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useScrollStore } from "../stores/ScrollStore";
-// import Home from "./home";
-// import MajorProjects from "./major-projects";
-import MajorProjectDetails from "./major-project-details";
+import { Routing } from "../routing/Routing";
 
 const Model = () => {
   const totalPages = useScrollStore((state) => state.totalPages);
@@ -24,9 +22,11 @@ const Model = () => {
           {/* <Playground /> */}
           {/* <Home /> */}
           {/* <MinorProjects /> */}
-          <MajorProjectDetails />
+          {/* <MajorProjectDetails /> */}
           {/* <About /> */}
           {/* <Skills /> */}
+
+          <Routing />
         </ScrollControls>
 
         <OrbitControls makeDefault enableZoom={false} />

@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { useThree } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { useNavigate } from "react-router-dom";
+import { Fonts } from "../../presentation/Core";
 import type { BoundingBox } from "../../presentation/Types";
 import { MajorProjectPreviewCard } from "../playground/MajorProjectPreviewCard";
 import { FloatingActionButton } from "./FloatingActionButton";
-import { ProjectsModal } from "./ProjectsModal";
 import { MINOR_PROJECTS } from "./projects-data";
-import { Fonts } from "../../presentation/Core";
 
 export interface MinorProjectsSectionProps {
   bounds: BoundingBox;
@@ -20,7 +19,7 @@ export function MinorProjectsSection({
   portraitScale: propPortraitScale,
 }: MinorProjectsSectionProps) {
   const viewport = useThree((t) => t.viewport);
-  const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const middle = {
     x: (bounds.right + bounds.left) / 2.0,
@@ -34,7 +33,7 @@ export function MinorProjectsSection({
 
   // ─── Landscape Layout (Horizontal Side-by-Side) ─
   if (isLandscape) {
-    const cardScale = propLandscapeScale ?? 1.10;
+    const cardScale = propLandscapeScale ?? 1.1;
 
     const scaledW = cardWidth * cardScale;
     const scaledH = cardHeight * cardScale;
@@ -106,16 +105,9 @@ export function MinorProjectsSection({
             floatIntensity={0.35}
             floatingRange={[-0.04, 0.04]}
             isExternal={true}
-            onClick={() => setModalOpen(true)}
+            onClick={() => navigate("/minor-projects")}
           />
         </group>
-
-        {modalOpen && (
-          <ProjectsModal
-            initialCategory="minor"
-            onClose={() => setModalOpen(false)}
-          />
-        )}
       </>
     );
   }
@@ -191,16 +183,9 @@ export function MinorProjectsSection({
           floatIntensity={0.35}
           floatingRange={[-0.04, 0.04]}
           isExternal={true}
-          onClick={() => setModalOpen(true)}
+          onClick={() => navigate("/minor-projects")}
         />
       </group>
-
-      {modalOpen && (
-        <ProjectsModal
-          initialCategory="minor"
-          onClose={() => setModalOpen(false)}
-        />
-      )}
     </>
   );
 }
