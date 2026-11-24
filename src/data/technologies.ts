@@ -4,30 +4,60 @@ export const SPRING_TECHNOLOGIES = [
   'Spring Data JPA',
   'Spring Security',
   'Spring Webflux',
+  'Spring Webflux (Websockets)',
   'Spring GraphQL',
   'Spring Data JDBC',
   'Spring Cloud Gateway',
   'Spring Cloud Config Server/Client',
   'Spring Cloud Streams',
-  'Spring Boot Testing'
-];
+  'Spring Boot Testing',
+] as const;
 
 export const INFRASTRUCTURE_TECHNOLOGIES = [
   'Docker',
   'Docker Compose',
   'Kubernetes',
+  'Helm Charts/Templates',
+  'Terraform',
+  'ArgoCD',
+  'Grafana',
+  'Prometheus',
+  'OpenTelemetry',
+  'Firebase',
   'Google Cloud Platform (GCP)',
-  'Amazon Web Services (AWS)'
-];
+  'Amazon Web Services (AWS)',
+] as const;
 
-export const MOBILE_TECHNOLOGIES = [
+export const FRONTEND_TECHNOLOGIES = [
   'Kotlin Multiplatform',
   'Compose Multiplatform',
   'Koin',
+  'Hilt',
   'Ktor Client',
   'Navigation 3',
-  'Kotlinx Coroutines'
-];
+  'Kotlinx Coroutines/Flows',
+  'Coil 3',
+  'Navigation 3',
+  'Room 3',
+  'Retrofit',
+  'DataStore',
+  'WorkManager',
+  'AppState',
+  'Glance',
+  'Paging 3',
+  'Media 3',
+  'CameraX',
+  'Firebase Integrations',
+  'Google Maps Integrations',
+  'Credentials Manager',
+  'MacroBenchMark',
+  'Jetpack Compose',
+  'Material 3',
+  'Styles API',
+  'AGSL',
+  'OpenGL ES 3.0',
+  'Filament',
+] as const;
 
 export const TESTING_TECHNOLOGIES = [
   'TestContainers',
@@ -36,11 +66,23 @@ export const TESTING_TECHNOLOGIES = [
   'MockK',
   'JUnit 4/5',
   'KoTest',
+  'TestBalloons',
   'Kover (Test Coverage)',
   'Kotlinx Coroutines Test',
   'Spring Boot Testing',
-  'Robolectric / Roborazzi',
+  'Robolectric',
   'Koin Testing',
   'Compose UI Testing',
-  'Compose Unit Testing'
-];
+  'Compose Unit Testing',
+  'KMP/CMP Testing',
+  'Turbine',
+  'AssertK',
+  'Truth',
+  'Espresso',
+  'UiAutomator',
+  'Roborazzi (screenshot testing)',
+  'Benchmark Testing',
+  'Konsist',
+  'Ktor MockWebServer',
+  'ToxiProxy',
+] as const;

@@ -33,7 +33,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: fireworkeffectMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/e87924e81e39a9e1be70c2f9165fe011',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -55,7 +57,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: smokeparticleseffectMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/f834aae3be19dcdabae37f31a186d224',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -77,7 +81,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: randommovereffectMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/3cb6a1fa91d476a2b6016ed8e9c768c5',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -99,7 +105,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: gestureindicationparticleseffectMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/e7c8b2bddb6f2af333c9fa244832ee00',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -121,7 +129,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: deckcardsrevealinganimationMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/4bec6b37ba1042a705a414cc8f1bec6f',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -143,7 +153,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: oscillatingheartanimationMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/afeb78254b89db20404efbd93c1d291f',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -165,7 +177,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: waterywavytextcolorMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/ac9fb5ca6d041effd68addf5bfde4b72',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -190,7 +204,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: glassyimageeffectMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/f7fc3f7e8cb967f69007f9a779367459',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -211,7 +227,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: starratingfillanimationMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/c17e9388ea92784c730f52ae944f4510',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -233,7 +251,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: boxdropshadoweffectMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/45c8feb28f993f92293777c44812b8d1',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -254,7 +274,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: expandablemenuanimationMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/05874502ec6e922744827d9a6cd02ebe',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -276,7 +298,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: animatedgobutton1MD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/841fe7f4ef21a9457544af68cee235c1',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -298,7 +322,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: animatedgobutton2MD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/1731bc3e33583fdb9f01c6e363a75594',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -320,7 +346,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: clockviewMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/e71631b07d9c93b5978f6da50f6419fc',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -341,7 +369,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: customgradienttextfieldMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/ae06599b968720b8320d435dbda71080',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -363,7 +393,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: fooddeliveryappuiMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/62f431f34174c1e20cc5e6addeb54586',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -385,7 +417,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: chatappuiwithtypingindicationsMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/8a58bc9a3a5518ff0c612395d90206e5',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -407,7 +441,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: instagrammultiprofilecontainerMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/ef73fd202a0ce82173f765b1304e7b44',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -428,7 +464,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: instagrampostuiMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/b783efd34c7fe3bd28aeb447ac6023ff',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -449,7 +487,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: instagramprofilescreenMD,
     platforms: ['android', 'ios'],
     source: 'https://gist.github.com/Mikkareem/a0df7c2ed5ee5dcda4a42786beecf287',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -471,7 +511,9 @@ export const miniProjectsData: MiniProject[] = [
     platforms: ['android', 'ios'],
     createdAt: "2023-12-12", // yyyy-mm-dd
     source: 'https://gist.github.com/Mikkareem/1995b7467d65e9da79e91fa35d3627df',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }
@@ -492,7 +534,9 @@ export const miniProjectsData: MiniProject[] = [
     overview: kanbanboardviewMD,
     platforms: ['android'],
     source: 'https://github.com/Mikkareem/tasks-kanban-app',
-    technologies: [],
+    technologies: [
+      'Jetpack Compose'
+    ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Jetpack Compose' },
       { color: ['#ef4444', '#f43f5e'], label: 'Animations' }

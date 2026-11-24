@@ -25,8 +25,16 @@ export const majorProjectsData: MajorProject[] = [
       'Spring Boot w/Kotlin',
       'Spring Webflux',
       'Spring Cloud Gateway',
+      'Spring Cloud Streams',
+      'Spring Data JPA',
+      'Spring Security',
       'Docker',
       'Kubernetes',
+      'Helm Charts/Templates',
+      'Terraform',
+      'Amazon Web Services (AWS)',
+      'Google Cloud Platform (GCP)',
+      'ArgoCD',
       'TestContainers',
       'WireMock'
     ],
@@ -67,12 +75,19 @@ export const majorProjectsData: MajorProject[] = [
     source: 'https://github.com/techullurgy/NoteMyShow',
     technologies: [
       'Spring Boot w/Kotlin',
-      'Spring Security',
+      'Spring Webflux',
+      'Spring Cloud Gateway',
+      'Spring Cloud Streams',
+      'Spring Cloud Config Server/Client',
       'Spring Data JPA',
-      'Docker Compose',
+      'Spring Security',
+      'Docker',
+      'Kubernetes',
+      'Helm Charts/Templates',
+      'Terraform',
       'Amazon Web Services (AWS)',
-      'JUnit 4/5',
-      'Mockito'
+      'Google Cloud Platform (GCP)',
+      'ArgoCD',
     ],
     tags: [
       { color: ['#8b5cf6', '#ec4899'], label: 'Stripe' },
@@ -96,13 +111,31 @@ export const majorProjectsData: MajorProject[] = [
     platforms: ['backend', 'android', 'ios', 'desktop'],
     source: 'https://github.com/techullurgy/Howzapp',
     technologies: [
+      'Spring Boot w/Kotlin',
       'Kotlin Multiplatform',
       'Compose Multiplatform',
       'Koin',
       'Ktor Client',
-      'Kotlinx Coroutines',
+      'Kotlinx Coroutines/Flows',
       'MockK',
-      'Compose UI Testing'
+      'Compose UI Testing',
+      'Media 3',
+      'Navigation 3',
+      'Coil 3',
+      'DataStore',
+      'Room 3',
+      'Spring Cloud Gateway',
+      'Spring Cloud Streams',
+      'Spring Data JPA',
+      'Spring Security',
+      'Docker',
+      'Kubernetes',
+      'Helm Charts/Templates',
+      'Terraform',
+      'Firebase Integrations',
+      'Firebase',
+      'Koin Testing',
+      'Compose Unit Testing'
     ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Social Media' },
@@ -124,10 +157,11 @@ export const majorProjectsData: MajorProject[] = [
     platforms: ['android', 'ios'],
     source: 'https://github.com/techullurgy/MemeCut',
     technologies: [
+      'Jetpack Compose',
       'Compose Multiplatform',
       'Navigation 3',
-      'Kotlinx Coroutines',
-      'Compose Unit Testing'
+      'Koin',
+      'Kotlinx Coroutines/Flows',
     ],
     tags: [
       { color: ['#14b8a6', '#0d9488'], label: 'Meme Creation' }
@@ -145,14 +179,22 @@ export const majorProjectsData: MajorProject[] = [
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/techullurgy/ChessKApp',
     technologies: [
-      'Spring GraphQL',
+      'Spring Boot w/Kotlin',
+      'Spring Webflux',
       'Spring Data JDBC',
-      'Docker',
-      'KoTest'
+      'Spring Webflux (Websockets)',
+      'JUnit 4/5',
+      'Ktor Client',
+      'Compose Multiplatform',
+      'Kotlin Multiplatform',
+      'Koin',
+      'Navigation 3',
+      'Material 3',
+      'Styles API',
     ],
     tags: [
-      { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Game' },
-      { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Solver' },
+      { color: ['#ef4444', '#f43f5e'], label: 'Realtime' },
+      { color: ['#ef4444', '#f43f5e'], label: 'Online Game' },
     ],
     screenshots: [
       'https://storage.googleapis.com/techullurgy-media/app-demos/chessk/Chessk_home.png',
@@ -171,10 +213,14 @@ export const majorProjectsData: MajorProject[] = [
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/techullurgy/DosthMan',
     technologies: [
-      'Spring GraphQL',
-      'Spring Data JDBC',
-      'Docker',
-      'KoTest'
+      'Ktor Client',
+      'Koin',
+      'Navigation 3',
+      'Room 3',
+      'Compose Multiplatform',
+      'Kotlin Multiplatform',
+      'Kotlinx Coroutines/Flows',
+      'JUnit 4/5',
     ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'RestApi Client' },
@@ -194,10 +240,13 @@ export const majorProjectsData: MajorProject[] = [
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/techullurgy/SudokuApp',
     technologies: [
-      'Spring GraphQL',
-      'Spring Data JDBC',
-      'Docker',
-      'KoTest'
+      'Koin',
+      'Navigation 3',
+      'Room 3',
+      'Compose Multiplatform',
+      'Kotlin Multiplatform',
+      'Kotlinx Coroutines/Flows',
+      'JUnit 4/5',
     ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'Sudoku Game' },
@@ -223,13 +272,20 @@ export const majorProjectsData: MajorProject[] = [
     platforms: ['android', 'ios', 'desktop'],
     source: 'https://github.com/techullurgy/RubiksCube3D',
     technologies: [
-      'Spring GraphQL',
-      'Spring Data JDBC',
-      'Docker',
-      'KoTest'
+      'Ktor Client',
+      'Koin',
+      'Navigation 3',
+      'Room 3',
+      'Compose Multiplatform',
+      'Kotlin Multiplatform',
+      'Kotlinx Coroutines/Flows',
+      'JUnit 4/5',
+      'Filament',
+      'OpenGL ES 3.0'
     ],
     tags: [
       { color: ['#ef4444', '#f43f5e'], label: 'OpenGL ES' },
+      { color: ['#ef4444', '#f43f5e'], label: 'Filament' },
       { color: ['#ef4444', '#f43f5e'], label: '3D Game' }
     ],
     screenshots: [],

@@ -1,3 +1,5 @@
+import { FRONTEND_TECHNOLOGIES, INFRASTRUCTURE_TECHNOLOGIES, SPRING_TECHNOLOGIES, TESTING_TECHNOLOGIES } from "./data/technologies";
+
 export interface SocialLinks {
   github: string;
   linkedin: string;
@@ -31,54 +33,16 @@ export interface SkillGroup {
 
 export type ProjectType = 'major' | 'mini';
 
-export type SpringTechnology =
-  | 'Spring Boot'
-  | 'Spring Boot w/Kotlin'
-  | 'Spring Data JPA'
-  | 'Spring Security'
-  | 'Spring Webflux'
-  | 'Spring GraphQL'
-  | 'Spring Data JDBC'
-  | 'Spring Cloud Gateway'
-  | 'Spring Cloud Config Server/Client'
-  | 'Spring Cloud Streams'
-  | 'Spring Boot Testing';
+export type SpringTechnology = (typeof SPRING_TECHNOLOGIES)[number]
+export type InfrastructureTechnology = (typeof INFRASTRUCTURE_TECHNOLOGIES)[number];
 
-export type InfrastructureTechnology =
-  | 'Docker'
-  | 'Docker Compose'
-  | 'Kubernetes'
-  | 'Google Cloud Platform (GCP)'
-  | 'Amazon Web Services (AWS)';
-
-export type MobileTechnology =
-  | 'Kotlin Multiplatform'
-  | 'Compose Multiplatform'
-  | 'Koin'
-  | 'Ktor Client'
-  | 'Navigation 3'
-  | 'Kotlinx Coroutines'
-  | '';
-
-export type TestingTechnology =
-  | 'TestContainers'
-  | 'WireMock'
-  | 'Mockito'
-  | 'MockK'
-  | 'JUnit 4/5'
-  | 'KoTest'
-  | 'Kover (Test Coverage)'
-  | 'Kotlinx Coroutines Test'
-  | 'Spring Boot Testing'
-  | 'Robolectric / Roborazzi'
-  | 'Koin Testing'
-  | 'Compose UI Testing'
-  | 'Compose Unit Testing';
+export type FrontendTechnology = (typeof FRONTEND_TECHNOLOGIES)[number]
+export type TestingTechnology = (typeof TESTING_TECHNOLOGIES)[number]
 
 export type ProjectTechnology =
   | SpringTechnology
   | InfrastructureTechnology
-  | MobileTechnology
+  | FrontendTechnology
   | TestingTechnology;
 
 export type PlatformType = 'web' | 'android' | 'ios' | 'desktop' | 'backend';
