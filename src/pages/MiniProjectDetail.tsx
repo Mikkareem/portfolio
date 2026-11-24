@@ -1,26 +1,40 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ExternalLink, Activity, Layers, CornerDownRight, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
-import { portfolioRepository } from '../data/repositories/portfolioRepository';
-import { FadeIn } from '../components/animations/FadeIn';
-import { MarkdownRenderer } from '../components/common/MarkdownRenderer';
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Activity,
+  Layers,
+  CornerDownRight,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+} from "lucide-react";
+import { portfolioRepository } from "../data/repositories/portfolioRepository";
+import { FadeIn } from "../components/animations/FadeIn";
+import { MarkdownRenderer } from "../components/common/MarkdownRenderer";
 import {
   SPRING_TECHNOLOGIES,
   INFRASTRUCTURE_TECHNOLOGIES,
-  MOBILE_TECHNOLOGIES,
-  TESTING_TECHNOLOGIES
-} from '../data/technologies';
+  FRONTEND_TECHNOLOGIES,
+  TESTING_TECHNOLOGIES,
+} from "../data/technologies";
 
 const getYoutubeEmbedUrl = (url: string) => {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const regExp =
+    /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   const match = url.match(regExp);
-  return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
+  return match && match[2].length === 11
+    ? `https://www.youtube.com/embed/${match[2]}`
+    : url;
 };
 
 export const MiniProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const project = portfolioRepository.getMiniProjects().find(p => p.slug === slug);
+  const project = portfolioRepository
+    .getMiniProjects()
+    .find((p) => p.slug === slug);
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeVideo, setActiveVideo] = useState(0);
   const [activeYoutubeVideo, setActiveYoutubeVideo] = useState(0);
@@ -30,18 +44,25 @@ export const MiniProjectDetail = () => {
     setIsVideoLoading(true);
   }, [activeVideo]);
 
-  const hasScreenshots = project ? (project.screenshots && project.screenshots.length > 0) : false;
-  const hasVideos = project ? (project.videos && project.videos.length > 0) : false;
-  const hasYoutubeVideos = project ? (project.youtubeVideos && project.youtubeVideos.length > 0) : false;
+  const hasScreenshots = project
+    ? project.screenshots && project.screenshots.length > 0
+    : false;
+  const hasVideos = project
+    ? project.videos && project.videos.length > 0
+    : false;
+  const hasYoutubeVideos = project
+    ? project.youtubeVideos && project.youtubeVideos.length > 0
+    : false;
 
   const slides = project && hasScreenshots ? project.screenshots : [];
   const videos = project && hasVideos ? project.videos! : [];
-  const youtubeVideos = project && hasYoutubeVideos ? project.youtubeVideos! : [];
+  const youtubeVideos =
+    project && hasYoutubeVideos ? project.youtubeVideos! : [];
 
   useEffect(() => {
     if (slides.length <= 1) return;
     const interval = setInterval(() => {
-      setActiveSlide(prev => (prev + 1) % slides.length);
+      setActiveSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -49,9 +70,16 @@ export const MiniProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen pt-36 text-center space-y-4 font-sans">
-        <h2 className="text-2xl font-display font-bold text-white">Project Specification Not Found</h2>
-        <p className="text-text-muted">The system could not retrieve the target release metadata.</p>
-        <Link to="/mini-projects" className="inline-flex items-center gap-2 text-brand-primary font-semibold hover:underline bg-surface py-2 px-4 rounded-xl border border-white/5">
+        <h2 className="text-2xl font-display font-bold text-white">
+          Project Specification Not Found
+        </h2>
+        <p className="text-text-muted">
+          The system could not retrieve the target release metadata.
+        </p>
+        <Link
+          to="/mini-projects"
+          className="inline-flex items-center gap-2 text-brand-primary font-semibold hover:underline bg-surface py-2 px-4 rounded-xl border border-white/5"
+        >
           <ArrowLeft className="w-4 h-4" /> Back to Catalog
         </Link>
       </div>
@@ -59,14 +87,15 @@ export const MiniProjectDetail = () => {
   }
 
   return (
-    <div id="project-detail-page" className="relative min-h-screen pt-28 pb-20 font-sans">
-
+    <div
+      id="project-detail-page"
+      className="relative min-h-screen pt-28 pb-20 font-sans"
+    >
       {/* Visual background enhancements */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
-
         {/* Navigation Feed back */}
         <FadeIn direction="up">
           <Link
@@ -90,9 +119,10 @@ export const MiniProjectDetail = () => {
                   key={tagIdx}
                   className="px-3 py-1 rounded text-xs font-bold text-white uppercase tracking-wider"
                   style={{
-                    background: tag.color.length > 1
-                      ? `linear-gradient(135deg, ${tag.color.join(', ')})`
-                      : tag.color[0]
+                    background:
+                      tag.color.length > 1
+                        ? `linear-gradient(135deg, ${tag.color.join(", ")})`
+                        : tag.color[0],
                   }}
                 >
                   {tag.label}
@@ -134,9 +164,9 @@ export const MiniProjectDetail = () => {
                 <motion.img
                   key={activeSlide}
                   src={
-                    slides[activeSlide].startsWith('http')
+                    slides[activeSlide].startsWith("http")
                       ? slides[activeSlide]
-                      : `${import.meta.env.BASE_URL}${slides[activeSlide].startsWith('/') ? slides[activeSlide].slice(1) : slides[activeSlide]}`
+                      : `${import.meta.env.BASE_URL}${slides[activeSlide].startsWith("/") ? slides[activeSlide].slice(1) : slides[activeSlide]}`
                   }
                   alt={`${project.name} Interface ${activeSlide + 1}`}
                   referrerPolicy="no-referrer"
@@ -151,7 +181,11 @@ export const MiniProjectDetail = () => {
               {/* Prev Button */}
               {slides.length > 1 && (
                 <button
-                  onClick={() => setActiveSlide(prev => (prev - 1 + slides.length) % slides.length)}
+                  onClick={() =>
+                    setActiveSlide(
+                      (prev) => (prev - 1 + slides.length) % slides.length,
+                    )
+                  }
                   className="absolute left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 text-white hover:text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md"
                   aria-label="Previous Slide"
                 >
@@ -162,7 +196,9 @@ export const MiniProjectDetail = () => {
               {/* Next Button */}
               {slides.length > 1 && (
                 <button
-                  onClick={() => setActiveSlide(prev => (prev + 1) % slides.length)}
+                  onClick={() =>
+                    setActiveSlide((prev) => (prev + 1) % slides.length)
+                  }
                   className="absolute right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 text-white hover:text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md"
                   aria-label="Next Slide"
                 >
@@ -177,8 +213,11 @@ export const MiniProjectDetail = () => {
                     <button
                       key={idx}
                       onClick={() => setActiveSlide(idx)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeSlide === idx ? 'bg-brand-primary w-6' : 'bg-white/40 hover:bg-white/60'
-                        }`}
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                        activeSlide === idx
+                          ? "bg-brand-primary w-6"
+                          : "bg-white/40 hover:bg-white/60"
+                      }`}
                       aria-label={`Go to slide ${idx + 1}`}
                     />
                   ))}
@@ -198,7 +237,7 @@ export const MiniProjectDetail = () => {
                     <Loader2 className="w-10 h-10 text-brand-primary animate-spin" />
                   </div>
                 )}
-                {videos[activeVideo].toLowerCase().endsWith('.gif') ? (
+                {videos[activeVideo].toLowerCase().endsWith(".gif") ? (
                   <img
                     src={videos[activeVideo]}
                     alt={`${project.name} Demo GIF ${activeVideo + 1}`}
@@ -226,7 +265,11 @@ export const MiniProjectDetail = () => {
               {videos.length > 1 && (
                 <div className="flex justify-center items-center gap-4">
                   <button
-                    onClick={() => setActiveVideo(prev => (prev - 1 + videos.length) % videos.length)}
+                    onClick={() =>
+                      setActiveVideo(
+                        (prev) => (prev - 1 + videos.length) % videos.length,
+                      )
+                    }
                     className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" /> Prev Video
@@ -235,7 +278,9 @@ export const MiniProjectDetail = () => {
                     {activeVideo + 1} / {videos.length}
                   </span>
                   <button
-                    onClick={() => setActiveVideo(prev => (prev + 1) % videos.length)}
+                    onClick={() =>
+                      setActiveVideo((prev) => (prev + 1) % videos.length)
+                    }
                     className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
                   >
                     Next Video <ChevronRight className="w-4 h-4" />
@@ -265,7 +310,13 @@ export const MiniProjectDetail = () => {
               {youtubeVideos.length > 1 && (
                 <div className="flex justify-center items-center gap-4">
                   <button
-                    onClick={() => setActiveYoutubeVideo(prev => (prev - 1 + youtubeVideos.length) % youtubeVideos.length)}
+                    onClick={() =>
+                      setActiveYoutubeVideo(
+                        (prev) =>
+                          (prev - 1 + youtubeVideos.length) %
+                          youtubeVideos.length,
+                      )
+                    }
                     className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" /> Prev Video
@@ -274,7 +325,11 @@ export const MiniProjectDetail = () => {
                     {activeYoutubeVideo + 1} / {youtubeVideos.length}
                   </span>
                   <button
-                    onClick={() => setActiveYoutubeVideo(prev => (prev + 1) % youtubeVideos.length)}
+                    onClick={() =>
+                      setActiveYoutubeVideo(
+                        (prev) => (prev + 1) % youtubeVideos.length,
+                      )
+                    }
                     className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all duration-300 flex items-center gap-2 hover:text-brand-primary cursor-pointer"
                   >
                     Next Video <ChevronRight className="w-4 h-4" />
@@ -287,12 +342,12 @@ export const MiniProjectDetail = () => {
 
         {/* Descriptive Long-form Details & Tech side grids */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4">
-
           {/* Main overview */}
           <div className="lg:col-span-8 space-y-6">
             <FadeIn direction="up">
               <h2 className="text-xl font-display font-bold text-white flex items-center gap-2">
-                <Activity className="w-5 h-5 text-brand-primary" /> Architectural Overview
+                <Activity className="w-5 h-5 text-brand-primary" />{" "}
+                Architectural Overview
               </h2>
             </FadeIn>
             <FadeIn direction="up" delay={0.1}>
@@ -315,7 +370,9 @@ export const MiniProjectDetail = () => {
                 <div className="space-y-3 font-sans text-xs sm:text-sm">
                   <div className="flex justify-between">
                     <span className="text-text-muted">Platform Scope:</span>
-                    <span className="text-white font-semibold capitalize">{project.platforms.join(', ')}</span>
+                    <span className="text-white font-semibold capitalize">
+                      {project.platforms.join(", ")}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -323,17 +380,25 @@ export const MiniProjectDetail = () => {
 
             {/* Categorized Tech Cards */}
             {(() => {
-              const springTechs = project.technologies.filter(t => SPRING_TECHNOLOGIES.includes(t));
-              const infraTechs = project.technologies.filter(t => INFRASTRUCTURE_TECHNOLOGIES.includes(t));
-              const mobileTechs = project.technologies.filter(t => MOBILE_TECHNOLOGIES.includes(t));
-              const testingTechs = project.technologies.filter(t => TESTING_TECHNOLOGIES.includes(t));
+              const springTechs = project.technologies.filter((t) =>
+                SPRING_TECHNOLOGIES.includes(t),
+              );
+              const infraTechs = project.technologies.filter((t) =>
+                INFRASTRUCTURE_TECHNOLOGIES.includes(t),
+              );
+              const mobileTechs = project.technologies.filter((t) =>
+                FRONTEND_TECHNOLOGIES.includes(t),
+              );
+              const testingTechs = project.technologies.filter((t) =>
+                TESTING_TECHNOLOGIES.includes(t),
+              );
 
               const categories = [
-                { name: 'Spring Technologies', techs: springTechs },
-                { name: 'Infrastructure Technologies', techs: infraTechs },
-                { name: 'Mobile Technologies', techs: mobileTechs },
-                { name: 'Testing Technologies', techs: testingTechs },
-              ].filter(c => c.techs.length > 0);
+                { name: "Spring Technologies", techs: springTechs },
+                { name: "Infrastructure Technologies", techs: infraTechs },
+                { name: "Frontend Technologies", techs: mobileTechs },
+                { name: "Testing Technologies", techs: testingTechs },
+              ].filter((c) => c.techs.length > 0);
 
               return categories.map((cat, idx) => (
                 <FadeIn key={cat.name} direction="up" delay={0.15 + idx * 0.05}>
@@ -342,12 +407,14 @@ export const MiniProjectDetail = () => {
                       {cat.name}
                     </h3>
                     <div className="flex flex-col md:flex-row md:flex-wrap gap-2">
-                      {cat.techs.map(tech => (
+                      {cat.techs.map((tech) => (
                         <div
                           key={tech}
                           className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono text-brand-primary bg-brand-primary/5 border border-brand-primary/10 rounded-md w-full md:w-auto hover:bg-brand-primary/10 hover:border-brand-primary/20 transition-all duration-300"
                         >
-                          <span className="text-brand-accent font-bold">&gt;)</span>
+                          <span className="text-brand-accent font-bold">
+                            &gt;)
+                          </span>
                           <span>{tech}</span>
                         </div>
                       ))}
@@ -357,9 +424,7 @@ export const MiniProjectDetail = () => {
               ));
             })()}
           </div>
-
         </div>
-
       </div>
     </div>
   );

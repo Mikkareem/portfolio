@@ -174,7 +174,10 @@ export const skillsData: SkillGroup[] = [
       { name: 'Zustand', iconName: skillIconName, level: defaultLevel },
       { name: 'Redux', iconName: skillIconName, level: defaultLevel },
       { name: 'React Router', iconName: skillIconName, level: defaultLevel },
-      { name: 'p5.js', iconName: skillIconName, level: defaultLevel }
+      { name: 'p5.js', iconName: skillIconName, level: defaultLevel },
+      { name: 'Three.js', iconName: skillIconName, level: defaultLevel },
+      { name: 'GSAP', iconName: skillIconName, level: defaultLevel },
+      { name: 'Framer Motion', iconName: skillIconName, level: defaultLevel },
     ]
   },
 ];
